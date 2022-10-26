@@ -75,7 +75,7 @@ h1{
   display:flex;
   flex-direction: column;
   background-color: #ffffff;
-  box-shadow: 1.5px 1.5px 1.5px 1.5px #444444;
+  box-shadow: 1px 1px 1.5px 1.5px #aaaaaa;
   width:50vw;
   border-radius: 10px;
 }
@@ -104,4 +104,53 @@ h1{
 
 :root::-webkit-scrollbar:hover{
   width:10px;
+}
+
+.background{
+  z-index: -1;
+  position:absolute;
+  top:5vh;
+  height:95vh;
+  width:100%;
+}
+
+.background > *{
+  z-index: inherit;
+}
+
+#vario{
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(224,251,252,1) 10%, rgba(149,177,195,1) 48%, rgba(61,90,128,1) 82%, rgba(41,50,65,1) 100%); 
+  mask:url("./vario_wave_mask.svg");
+  mask-size:cover;
+}
+
+#kontakt{
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(158,173,192,1) 24%, rgba(61,90,128,1) 63%, rgba(41,50,65,1) 100%);
+  mask:url("./vario_wave_mask.svg");
+  mask-size:cover;
+}
+
+#matura{
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(120,144,186,1) 27%, rgba(41,50,65,1) 72%, rgba(0,0,0,1) 100%); 
+  mask:url("./vario_wave_mask.svg");
+  mask-size:cover;
+}
+
+#wir{
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(238,108,77,1) 78%, rgba(166,69,48,1) 100%); 
+  mask:url("./vario_wave_mask.svg");
+  mask-size:cover;
+}
+
+
+/* Make some kind of dual layout*/
+#org{
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(158,173,192,1) 24%, rgba(61,90,128,1) 63%, rgba(41,50,65,1) 100%);
+  mask:url("./vario_wave_mask.svg");
+  mask-size:cover;
 }

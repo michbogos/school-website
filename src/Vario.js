@@ -5,6 +5,7 @@ export default function Vario() {
   return (
     <div className='stack'>
       <TopBar></TopBar>
+      <div className='background' id="vario"></div>
       <div className='stack center'>
       <div className='card'>
         <h1>Vario</h1>

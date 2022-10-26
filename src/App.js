@@ -8,6 +8,7 @@ import Schule from './Schule'
 import Vario from './Vario'
 import Org from './Org'
 import Kontakt from './Kontakt'
+import Matura from './Matura';
 
 function App() {
   return (
@@ -15,12 +16,11 @@ function App() {
       <Route path='/' element={<Homepage/>}></Route>
       <Route path='/recepies' element={<Food/>}></Route>
       <Route path='/wir' element={<Wir></Wir>}></Route>
-      <Route path='/schule' element={<Schule></Schule>}></Route>
+      <Route path='/matura' element={<Matura></Matura>}></Route>
       <Route path='/vario' element={<Vario></Vario>}></Route>
       <Route path='/zweige' element={<Org></Org>}></Route>
-      <Route path='/Kontakt' element={<Kontakt></Kontakt>}></Route>
+      <Route path='/kontakt' element={<Kontakt></Kontakt>}></Route>
     </Routes>
   );
 }
-
 export default App;
