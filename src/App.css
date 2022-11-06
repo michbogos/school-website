@@ -22,6 +22,7 @@ h1{
 .stack{
   display:flex;
   flex-direction: column;
+  height:100%;
 }
 
 .navBar{
@@ -76,13 +77,22 @@ h1{
   flex-direction: column;
   background-color: #ffffff;
   box-shadow: 1px 1px 1.5px 1.5px #aaaaaa;
-  width:50vw;
+  width:35vw;
   border-radius: 10px;
 }
 
 .center{
   align-items: center;
   padding-top: 5vh;
+  justify-content: space-between;
+}
+
+.row{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width:90vw;
+  height:100%;
 }
 
 #img-text{
@@ -143,14 +153,15 @@ h1{
   background: rgb(255,255,255);
   background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(238,108,77,1) 78%, rgba(166,69,48,1) 100%); 
   mask:url("./vario_wave_mask.svg");
-  mask-size:cover;
+  mask-size:100vh;
 }
 
 
 /* Make some kind of dual layout*/
 #org{
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(158,173,192,1) 24%, rgba(61,90,128,1) 63%, rgba(41,50,65,1) 100%);
-  mask:url("./vario_wave_mask.svg");
-  mask-size:cover;
+  background: url("./square_tiles.svg");
+  background-size: cover;
+  filter: hue-rotate(20deg);
+  display:flex;
 }

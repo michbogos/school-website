@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 960 1080" width="960" height="1080"><defs>
+<style>
+.square{
+            animation:pathAnim-0 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+          }
+          @keyframes pathAnim-0{
+            0%{
+            patternTransform: translate(0 0) scale(1) rotate(0) skewX(0) skewY(0)
+            }
+            25%{
+            patternTransform: translate(0 0) scale(1) rotate(90) skewX(0) skewY(0)
+            }
+            50%{
+            patternTransform: translate(0 0) scale(1) rotate(180) skewX(0) skewY(0)
+            }
+            75%{
+            patternTransform: translate(0 0) scale(1) rotate(270) skewX(0) skewY(0)
+            }
+            100%{
+            patternTransform: translate(0 0) scale(1) rotate(360) skewX(0) skewY(0)
+            }
+</style>
+<pattern class="square" id="mmmotif-pattern" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="translate(25 25) scale(2) rotate(45) skewX(0) skewY(0)">
+    <rect width="11.3638" height="11.3638" transform="matrix(0.872008 0.489492 -0.872008 0.489492 20.0005 16.4375)" fill="#1e72a3"></rect>
+    <rect width="11.3638" height="6" transform="matrix(0.872008 0.489492 0 1 10.0908 22)" fill="#5ba0d5"></rect>
+    <rect width="11.3638" height="6" transform="matrix(0.872008 -0.489492 0 1 20 27.5625)" fill="#004774"></rect>
+    <rect width="11.3638" height="11.3638" transform="matrix(0.872008 0.489492 -0.872008 0.489492 20.0005 6.4375)" fill="#1e72a3"></rect>
+    <rect width="11.3638" height="6" transform="matrix(0.872008 0.489492 0 1 10.0908 12)" fill="#5ba0d5"></rect>
+    <rect width="11.3638" height="6" transform="matrix(0.872008 -0.489492 0 1 20 17.5625)" fill="#004774"></rect>
+</pattern></defs><rect width="1920" height="1080" fill="url(#mmmotif-pattern)"></rect></svg>
