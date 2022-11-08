@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/school-website/static/css/main.d0d83636.css",
+    "main.js": "/school-website/static/js/main.83e9d0d6.js",
+    "static/media/logo.svg": "/school-website/static/media/logo.105be03c471848b337d0a025391595d9.svg",
+    "static/media/vario_wave_mask.svg": "/school-website/static/media/vario_wave_mask.4d70e9cb61f5a73cc317.svg",
+    "static/media/inverse_mask.svg": "/school-website/static/media/inverse_mask.a298c97ddd67a3db64f6.svg",
+    "static/media/square_tiles.svg": "/school-website/static/media/square_tiles.2b6d8e1b30d90f6c31ab.svg",
+    "index.html": "/school-website/index.html",
+    "main.d0d83636.css.map": "/school-website/static/css/main.d0d83636.css.map",
+    "main.83e9d0d6.js.map": "/school-website/static/js/main.83e9d0d6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d0d83636.css",
+    "static/js/main.83e9d0d6.js"
+  ]
+}
