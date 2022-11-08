@@ -13,7 +13,7 @@ import Matura from './Matura';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Homepage/>}></Route>
+      <Route path='/school-website' element={<Homepage/>}></Route>
       <Route path='/recepies' element={<Food/>}></Route>
       <Route path='/wir' element={<Wir></Wir>}></Route>
       <Route path='/matura' element={<Matura></Matura>}></Route>
