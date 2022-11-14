@@ -12,6 +12,8 @@ export default function Vario() {
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
+        <h1>Interessiert?</h1>
+        <center><button id="buchen">Jetzt buchen</button></center>
       </div>
       </div>
     </div>

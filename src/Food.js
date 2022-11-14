@@ -6,12 +6,35 @@ export default function Food() {
     <div className='stack'>
       <TopBar></TopBar>
       <div className='stack center'>
-      <div className='card'>
-        <h1>Vario</h1>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-      </div>
+        <h1>Essen</h1>
+        <div id = "table-border">
+          <table>
+            <thead>
+              <tr>
+                <th>Menge</th>
+                <th>Zutat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>100g</td>
+                <td>Zwetchken</td>
+              </tr>
+              <tr>
+                <td>200g</td>
+                <td>Birnen</td>
+              </tr>
+              <tr>
+                <td>300g</td>
+                <td>Orangen</td>
+              </tr>
+              <tr>
+                <td>400g</td>
+                <td>Erdbeeren</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )

@@ -5,6 +5,11 @@ This is a completely unoptimized alternate version of the school website. It is 
 
 Right now it's just an experiment in css.
 
+TODO:
+- Add spacing for table
+- Polish table
+- Add content
+
 Future goals:
 - Finish the website
 - Optimize for production

@@ -20,6 +20,7 @@ function App() {
       <Route path='/vario' element={<Vario></Vario>}></Route>
       <Route path='/zweige' element={<Org></Org>}></Route>
       <Route path='/kontakt' element={<Kontakt></Kontakt>}></Route>
+      <Route path='/arbeitsauftrag' element={<Food></Food>}></Route>
     </Routes>
   );
 }
