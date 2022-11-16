@@ -3,7 +3,11 @@ import {useNavigate} from 'react-router-dom'
 import Logo from "./logo.svg"
 
 export default function NavBar() {
-    let navigate = useNavigate()
+  let navigate = useNavigate()
+
+  let changeMode = ()=>{
+    document.querySelector(":root").setAttribute("--b200", "#000000")
+  }
   return (
     <div className='navBar'>
         <button className='textButton'><img style={{height:"100%"}} src={Logo}/></button>

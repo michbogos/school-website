@@ -9,17 +9,12 @@ export default function Org() {
       <div className='stack center'>
         <div className='row'>
           <div className='card'>
-            <h1>Vario</h1>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
+            <h1>ORG</h1>
+            <p>In ORG lernt man Physik</p>
           </div>
           <div className='card'>
-            <h1>Vario</h1>
-            
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
+            <h1>W</h1>
+            <p>In W lernt man Franzoesisch.</p>
           </div>
         </div>
       </div>

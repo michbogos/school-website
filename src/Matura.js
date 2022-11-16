@@ -8,10 +8,8 @@ export default function Matura() {
       <div className='background' id="matura"></div>
       <div className='stack center'>
       <div className='card'>
-        <h1>Vario</h1>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a augue magna. Maecenas vitae tellus sed ligula viverra pulvinar. Donec in justo sagittis magna egestas auctor in eu erat. Fusce eu lacinia metus, id ultricies leo. Integer tempus, ante at mattis suscipit, arcu dolor venenatis mauris, molestie consequat erat mi. </p>
+        <h1>Matura</h1>
+        <p>Bereite dich fur die Matura in unserer Schule vor</p>
       </div>
       </div>
     </div>
