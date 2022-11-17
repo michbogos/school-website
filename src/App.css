@@ -25,6 +25,7 @@ h1{
 table{
   border: solid 1px var(--b400);
   border-collapse: collapse;
+  width:100%;
 }
 td{
   margin:0;
@@ -32,16 +33,12 @@ td{
 
 }
 
+th{
+  background-color: #dddddd;
+}
+
 tr:nth-child(even){
   background: var(--b200);
-}
-
-tr:nth-child(even):hover{
-  background: var(--b300);
-}
-
-tr:nth-child(odd):hover{
-  background: var(--b100);
 }
 
 #table-border{
@@ -249,4 +246,10 @@ tr:nth-child(odd):hover{
    );
   --_t: var(--h);
   --_p: 105%;
+}
+#food{
+  background-image: url("./food.jpg");
+  width:100%;
+  height:25vh;
+  border-radius: 10px;
 }

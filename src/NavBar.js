@@ -4,12 +4,9 @@ import Logo from "./logo.svg"
 
 export default function NavBar() {
   let navigate = useNavigate()
-
-  let changeMode = ()=>{
-    document.querySelector(":root").setAttribute("--b200", "#000000")
-  }
   return (
     <div className='navBar'>
+        <button className='textButton' onClick={()=>{navigate("/recepies")}}>Lieblingsessen</button>
         <button className='textButton'><img style={{height:"100%"}} src={Logo}/></button>
         <button onMouseLeave={(e)=>{document.body.style.background = "#ffffff"}} onMouseEnter={(e)=>{document.body.style.background = "var(--b100)"}} onClick={()=>{navigate("/vario");document.body.style.background = "#ffffff"}}className='textButton one'>VARIO</button>
         <button onMouseLeave={(e)=>{document.body.style.background = "#ffffff"}} onMouseEnter={(e)=>{document.body.style.background = "var(--b200)"}}  onClick={()=>{navigate("/zweige");document.body.style.background = "#ffffff"}}className='textButton two'>ORG/W</button>
