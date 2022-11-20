@@ -1,0 +1,17 @@
+body{
+  margin:0;
+  padding:0;
+  width:100vw;
+  transition-duration: 300ms;
+}
+h1{
+  text-align: center;
+}
+
+#masked-text{
+  mask: url("../assets/mask.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  height:100vh;
+  margin-bottom: 10vh;
+}
