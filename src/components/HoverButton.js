@@ -1,36 +1,29 @@
 import React, { useState, useEffect} from 'react'
 
-import { Button, Popover, Card } from '@mui/material'
+import { Button, Menu, MenuItem} from '@mui/material'
+
+import {useNavigate} from "react-router-dom"
 
 export default function HoverButton(props) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [anchor, setAnchor] = useState(null)
 
-  let mouseEnterHandler = (e)=>{
-    setIsOpen(true);
-    console.log("enter")
+  let handleClick = (e)=>{
+    if (anchor !== e.currentTarget) {
+      setAnchor(e.currentTarget);
+    }
   }
 
-  let mouseLeaveHandler = (e)=>{
-    setIsOpen(false);
+  function handleClose() {
+    setAnchor(null);
   }
+
+  let navigate = useNavigate()
   return (
     <React.Fragment>
-        <Button onMouseEnter={mouseEnterHandler} id = {props.uid} variant='text'>{props.label}</Button>
-        <Popover  anchorEl={document.getElementById(props.uid)}
-                  open={isOpen}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}>
-            <Card onMouseLeave={mouseLeaveHandler}
-                  onMouseEnter={mouseEnterHandler}>
-              {props.element}
-            </Card>
-        </Popover>
+        <Button onClick = {()=>{navigate(props.url)}} aria-haspopup="true" aria-owns={anchor ? "simple-menu" : undefined} onMouseOver={handleClick} id = {props.uid} variant='text'>{props.label}</Button>
     </React.Fragment>
   )
 }
+/* <Menu anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }}>
+          {props.sublables.map((e)=>{return <MenuItem>{e}</MenuItem>})}
+        </Menu> */
