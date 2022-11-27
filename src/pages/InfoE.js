@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
 import React from 'react'
 import CalendarCard from '../components/CalendarCard'
@@ -10,7 +10,32 @@ export default function InfoE() {
     <TopBar></TopBar>
     <center>
     <Stack width="90vw">
-      <Grid container spacing={4}>
+      <Typography variant='h1'>Kalender</Typography>
+      <Grid container spacing={4} height="90vh">
+      <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
+        <Grid item xs={4}>
+          <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
+        </Grid>
         <Grid item xs={4}>
           <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
         </Grid>
@@ -24,6 +49,7 @@ export default function InfoE() {
           <CalendarCard title="Schwimmwoche" description="glj;dflkjsadflksdjf" date="11 mar"></CalendarCard>
         </Grid>
       </Grid>
+      <Typography variant="h1">Elternsprechtag</Typography>
     </Stack>
     </center>
     </React.Fragment>

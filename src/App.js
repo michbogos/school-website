@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import InfoS from './pages/InfoS';
 import InfoE from './pages/InfoE';
 import InfoA from './pages/InfoA';
+import Fotos from './pages/Fotos';
 
 function App() {
   const pb = new PocketBase('http://127.0.0.1:8090');
@@ -25,6 +26,7 @@ function App() {
       <Route path='/school-website/info/schueler' element={<InfoS></InfoS>}></Route>
       <Route path='/school-website/info/eltern' element={<InfoE></InfoE>}></Route>
       <Route path='/school-website/info/schule' element={<InfoA></InfoA>}></Route>
+      <Route path="school-website/bilder" element={<Fotos></Fotos>}></Route>
     </Routes>
   );
 }

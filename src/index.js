@@ -22,6 +22,14 @@ const theme = createTheme({
       contrastText: '#000',
     },
   },
+  typography:{
+    body1:{
+      fontSize: '24px'
+    },
+    body2:{
+      fontSize: '24px'
+    }
+  }
 });
 
 

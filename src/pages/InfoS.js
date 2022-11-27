@@ -4,27 +4,12 @@ import TopBar from '../components/TopBar'
 
 export default function InfoS() {
   return (
-    <Stack spacing={10}>
+    <Stack spacing={4}>
         <TopBar></TopBar>
-        <Stack direction="row" justifyContent={"space-evenly"}>
-            <Stack>
-                <Typography variant="h1">Infos</Typography>
-                <List>
-                    <ListItem>
-                        <Typography variant="h3">Info 1</Typography>
-                    </ListItem>
-                    <ListItem>
-                        <Typography variant="h3">Info 1</Typography>
-                    </ListItem>
-                    <ListItem>
-                        <Typography variant="h3">Info 1</Typography>
-                    </ListItem>
-                </List>
-            </Stack>
-            <Stack>
-            <Typography variant="h1">Termine</Typography>
-            </Stack>
-        </Stack>
+        <Typography variant='h1'>Stundenplan</Typography>
+        <Typography variant='h1'>Vario</Typography>
+        <Typography variant='h1'>Matura</Typography>
+        <Typography variant='h1'>VWA</Typography>
     </Stack>
   )
 }

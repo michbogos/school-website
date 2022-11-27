@@ -18,7 +18,7 @@ export default function TopBar() {
         <HoverButton uid = "1" url = "/school-website/schule" label="Schule" sublables={["Info", "Mehr Erfahren", "Internat"]}></HoverButton>
         <HoverButton uid = "2" label="Wir" sublables={["Klassen", "Kolegen", "Mitarbeiter"]}></HoverButton>
         <HoverButton uid = "3" label="Veranstaltungen" sublables={["Sportwoache", "Schwimmwoche", "Wienwoche"]}></HoverButton>
-        <HoverButton uid = "4" label="Vario" sublables={["Über", "Vario Portal"]}></HoverButton>
+        <HoverButton uid = "4" label="Bilder" url="/school-website/bilder" sublables={["Über", "Vario Portal"]}></HoverButton>
         <HoverButton uid = "5" label="Info" sublables={["Kotakt", "Administration"]}></HoverButton>
     </Toolbar>
     </AppBar>

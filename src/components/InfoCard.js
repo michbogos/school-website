@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import {Card, CardContent, Button, Typography} from "@mui/material"
+import {Card, CardContent, Button, Typography, CardActionArea} from "@mui/material"
 import { Stack, Box} from '@mui/system'
 
 import Logo from "../assets/logo.svg"
@@ -11,15 +11,18 @@ export default function InfoCard(props) {
   let navigate = useNavigate();
 
   return (
-    <Card>
-        <CardContent>
-          <Stack spacing={5}>
-              <Typography variant='h5'>{props.title}</Typography>
+    <Card sx={{height:"50vh"}}>
+        <CardContent sx={{height:"45vh"}}>
+          <Stack spacing={5} justifyContent="space-between" sx={{height:"100%"}}>
+            <Box>
+              <Typography variant='h3'>{props.title}</Typography>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                {props.description}
               </Typography>
-              <Button onClick={()=>{navigate(props.url)}} variant="text">Mehr Erfahren</Button>
-              <img src={Logo}></img>
+            </Box>
+              <CardActionArea>
+                <Button onClick={()=>{navigate(props.url)}} variant="text">Mehr Erfahren</Button>
+              </CardActionArea>
           </Stack>
         </CardContent>
     </Card>
