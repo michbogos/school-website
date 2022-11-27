@@ -9,56 +9,38 @@ import { Button, Toolbar, IconButton, Paper} from '@mui/material'
 import { Container } from '@mui/system'
 
 import Castle from "../assets/castle.jpg"
+import { useNavigate } from 'react-router-dom'
+import Post from '../components/Post'
 
 //TODO: Add List Item component for easier item addition
 
 export default function Homepage() {
 
   let gap = 4;
+  let navigate = useNavigate();
 
   return (
-    <Stack style={{height:"95vh", paddingTop:"5vh"}}>
+    <Stack>
       <TopBar></TopBar>
       <img src={Castle} id="masked-text"></img>
       <Container>
         <Stack spacing={5}>
-          <Grid container spacing={5}>
-            <Grid item xs={gap}>
-              <InfoCard title='Schule' url="school-website/schule"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title ="Wir" url="school-website/wir"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="Matura" url="school-website/matura"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="ORG" url="school-website/org"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="W" url="school-website/w"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="Vario" url="school-website/vario"></InfoCard>
-            </Grid>
-          </Grid>
-          <center>
-            <Typography variant='h2'>Kalender</Typography>
-          </center>
-          <Grid container gap={5}>
-            <Grid item xs={gap}>
-              <InfoCard title="Schwimmwoche"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="Schwimmwoche"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="Schwimmwoche"></InfoCard>
-            </Grid>
-            <Grid item xs={gap}>
-              <InfoCard title="Schwimmwoche"></InfoCard>
-            </Grid>
-          </Grid>
+          <Stack spacing={5} direction={"row"}>
+            <Typography></Typography>
+            <InfoCard title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
+            <InfoCard title="Info Eltern"  url="/school-website/info/eltern"></InfoCard>
+            <InfoCard title="Info Schule"  url="/school-website/info/schule"></InfoCard>
+          </Stack>
+          <Stack>
+            <center>
+              <Typography variant='h3'>Beiträge</Typography>
+            </center>
+            <List>
+              <ListItem>
+                <Post title="Beitrag" date="11.11.11" content="Das ist ein Beitrag"></Post>
+              </ListItem>
+            </List>
+          </Stack>
         </Stack>
       </Container>
     </Stack>

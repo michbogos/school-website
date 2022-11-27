@@ -13,17 +13,13 @@ export default function InfoCard(props) {
   return (
     <Card>
         <CardContent>
-          <Stack direction="row">
-            <Box>
+          <Stack spacing={5}>
               <Typography variant='h5'>{props.title}</Typography>
               <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </Typography>
               <Button onClick={()=>{navigate(props.url)}} variant="text">Mehr Erfahren</Button>
-            </Box>
-            <Box>
               <img src={Logo}></img>
-            </Box>
           </Stack>
         </CardContent>
     </Card>

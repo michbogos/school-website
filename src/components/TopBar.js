@@ -15,7 +15,7 @@ export default function TopBar() {
     <AppBar style={{background:"#ffffff"}}>
     <Toolbar>
         <IconButton onClick = {()=>{navigate("/school-website")}}><img style = {{width:"5vh"}} src={Logo}></img></IconButton>
-        <HoverButton uid = "1" url = "schule" label="Schule" sublables={["Info", "Mehr Erfahren", "Internat"]}></HoverButton>
+        <HoverButton uid = "1" url = "/school-website/schule" label="Schule" sublables={["Info", "Mehr Erfahren", "Internat"]}></HoverButton>
         <HoverButton uid = "2" label="Wir" sublables={["Klassen", "Kolegen", "Mitarbeiter"]}></HoverButton>
         <HoverButton uid = "3" label="Veranstaltungen" sublables={["Sportwoache", "Schwimmwoche", "Wienwoche"]}></HoverButton>
         <HoverButton uid = "4" label="Vario" sublables={["Über", "Vario Portal"]}></HoverButton>
