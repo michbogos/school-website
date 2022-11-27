@@ -5,11 +5,21 @@ This is a completely unoptimized alternate version of the school website. It is 
 
 Right now it's just an experiment in css.
 
-TODO:
-- Add spacing for table
-- Polish table
+Done:
+- Initial website
+- MUI rewrite
 - Add content
 
+Todo:
+- Improve content
+- Add Photo page
+- Finish modular components
+
 Future goals:
+- Integrate with PocketBase
+- Web Untis Integration
+- Color Scheme
+- Dark mode
+- Make design responsive
 - Finish the website
 - Optimize for production
