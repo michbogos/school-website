@@ -1,29 +1,32 @@
-import './App.css';
+import './styles/App.css';
 import { Routes, Route, Link } from "react-router-dom";
-import Homepage from './Homepage';
-import Food from './Food';
+import Homepage from './pages/Homepage';
+import Schule from './pages/Schule';
+import Veranstaltungen from './pages/Veranstaltungen';
 
+import PocketBase from 'pocketbase';
 import { useEffect, useState } from 'react';
-
-import Wir from './Wir'
-import Schule from './Schule'
-import Vario from './Vario'
-import Org from './Org'
-import Kontakt from './Kontakt'
-import Matura from './Matura';
+import InfoS from './pages/InfoS';
+import InfoE from './pages/InfoE';
+import InfoA from './pages/InfoA';
+import Fotos from './pages/Fotos';
 
 function App() {
-  let [mode, setMode] = useState("dark");
+  const pb = new PocketBase('http://127.0.0.1:8090');
+
+  const [termine, setTermine] = useState("")
+
+  useEffect(()=>{
+    pb.collection("termine").getList(1, 50)
+  }, [])
 
   return (
     <Routes>
       <Route path='/school-website' element={<Homepage/>}></Route>
-      <Route path='/recepies' element={<Food/>}></Route>
-      <Route path='/wir' element={<Wir></Wir>}></Route>
-      <Route path='/matura' element={<Matura></Matura>}></Route>
-      <Route path='/vario' element={<Vario></Vario>}></Route>
-      <Route path='/zweige' element={<Org></Org>}></Route>
-      <Route path='/kontakt' element={<Kontakt></Kontakt>}></Route>
+      <Route path='/school-website/info/schueler' element={<InfoS></InfoS>}></Route>
+      <Route path='/school-website/info/eltern' element={<InfoE></InfoE>}></Route>
+      <Route path='/school-website/info/schule' element={<InfoA></InfoA>}></Route>
+      <Route path="school-website/bilder" element={<Fotos></Fotos>}></Route>
     </Routes>
   );
 }
