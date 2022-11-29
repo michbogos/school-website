@@ -13,12 +13,15 @@ import { useNavigate } from 'react-router-dom'
 import Post from '../components/Post'
 import Links from '../components/Links'
 
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 //TODO: Add List Item component for easier item addition
 
 export default function Homepage() {
 
   let gap = 4;
   let navigate = useNavigate();
+  const isSmall = useMediaQuery("(min-width:1000px)")
 
   return (
     <Stack>
@@ -26,12 +29,12 @@ export default function Homepage() {
       <img src={Castle} id="masked-text"></img>
       <Container maxWidth="xl">
         <Stack spacing={5}>
-          <Stack spacing={5} direction={"row"}>
+          <Stack spacing={5} direction={isSmall ? "row" : "column"}>
             <Typography></Typography>
-            <InfoCard description="Stundenplan, VWA, Matura, Tremine" title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
-            <InfoCard description="Termine, Elternsprechtag, Kontakt" title="Info Eltern"  url="/school-website/info/eltern"></InfoCard>
-            <InfoCard description="Lehrer, Mitarbeiter, Bilder, Veranstaltungen, Internat, Anmelden, Speisesaal" title="Info Schule"  url="/school-website/info/schule"></InfoCard> 
-            <Card>
+            <InfoCard description={["Stundenplan", "VWA", "Matura", "Tremine"]} title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
+            <InfoCard description={["Termine", "Elternsprechtag", "Kontakt"]} title="Info Eltern"  url="/school-website/info/eltern"></InfoCard>
+            <InfoCard description={["Lehrer", "Mitarbeiter", "Bilder", "Veranstaltungen", "Internat", "Anmelden", "Speisesaal"]} title="Info Schule"  url="/school-website/info/schule"></InfoCard> 
+            <Card elevation={3}>
               <CardContent>
                 <Links></Links>
               </CardContent>

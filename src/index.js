@@ -27,9 +27,10 @@ const theme = createTheme({
       fontSize: '24px'
     },
     body2:{
-      fontSize: '24px'
+      fontSize: '16px'
     }
   }
+  
 });
 
 

@@ -4,7 +4,7 @@ import React from 'react'
 import CalendarCard from '../components/CalendarCard'
 import TopBar from '../components/TopBar'
 
-export default function InfoE() {
+export default function Termine(props) {
   return (
     <React.Fragment>
     <TopBar></TopBar>
