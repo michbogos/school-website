@@ -17,15 +17,14 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 
 //TODO: Add List Item component for easier item addition
 
-export default function Homepage() {
+export default function Homepage(props) {
 
   let gap = 4;
   let navigate = useNavigate();
   const isSmall = useMediaQuery("(min-width:1000px)")
-
+  console.log(props.posts);
   return (
     <Stack>
-      <TopBar></TopBar>
       <img src={Castle} id="masked-text"></img>
       <Container maxWidth="xl">
         <Stack spacing={5}>
@@ -44,9 +43,12 @@ export default function Homepage() {
             <Stack>
               <Typography variant='h3'>Beiträge</Typography>
               <List>
-                <ListItem>
-                  <Post title="Beitrag" date="11.11.11" content="Das ist ein Beitrag"></Post>
-                </ListItem>
+                {props.posts.map((element)=>{return (
+                  <ListItem>
+                  <Post title={element.title} date={element.created} content={element.content}></Post>
+                  </ListItem>
+                  )
+                })}
               </List>
             </Stack>
           </Stack>
