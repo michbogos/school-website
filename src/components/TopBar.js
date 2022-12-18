@@ -25,7 +25,7 @@ export default function TopBar(props) {
       </Box>
       <Box>
         {
-          props.auth ? <LoggedInFragment auth={props.auth}></LoggedInFragment> :
+          props.auth ? <LoggedInFragment logOut={props.logOut} auth={props.auth}></LoggedInFragment> :
         <Button variant="text" onClick={()=>{navigate("/school-website/login")}}>Login</Button>
         }
       </Box>

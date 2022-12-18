@@ -22,14 +22,12 @@ import Login from "./pages/Login"
 
 import { WebUntisAnonymousAuth, WebUntisElementType } from 'webuntis';
 import TopBar from './components/TopBar';
+import BeitragErstellen from './pages/BeitragErstellen';
+import TerminErstellen from './pages/TerminErstellen';
+import { FormControlUnstyledContext } from '@mui/base';
 
 function App() {
   const pb = new PocketBase('http://127.0.0.1:8090');
-
-  pb.collection('users').authWithPassword(
-    'user@mail.com',
-    '12345678',
-).then((res)=>{const auth = res});
   //const untis = new WebUntisAnonymousAuth('brg-borg-traunsee', 'mese.webuntis.com');
   //untis.login().then(res=>console.log(res));
 
@@ -38,12 +36,20 @@ function App() {
   //})
 
   const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [termine, setTermine] = useState([]);
   const [auth, setAuth] = useState(null);
 
   let navigate = useNavigate();
 
   useEffect(()=>{
-    pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items);console.log(res)});
+    pb.collection("users").authRefresh().then((res)=>{setAuth(res)})
+    pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
+    pb.collection('posts').subscribe('*', (e)=>{
+      setPosts([...posts, e])
+    })
+    pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
+    pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
   }, [])
 
   let logIn=(email, password)=>{
@@ -53,17 +59,22 @@ function App() {
   ).then((res)=>{setAuth(res); navigate("/school-website")});
   }
 
+  let logOut=(email, password)=>{
+    pb.authStore.clear();
+    setAuth(null);
+  }
+
   return (
     <React.Fragment>
-      <TopBar auth={auth}></TopBar>
+      <TopBar logOut={logOut} auth={auth}></TopBar>
       <Routes>
         <Route path='/school-website' element={<Homepage posts={posts}/>}></Route>
         <Route path='/school-website/stundenplan' element={<Stundenplan></Stundenplan>}></Route>
         <Route path='/school-website/vwa' element={<VWA></VWA>}></Route>
         <Route path='/school-website/matura' element={<Matura></Matura>}></Route>
-        <Route path="/school-website/termine" element={<Termine></Termine>}></Route>
+        <Route path="/school-website/termine" element={<Termine termine={termine}></Termine>}></Route>
         <Route path='/school-website/elternsprechtag' element={<Elternsprechtag></Elternsprechtag>}></Route>
-        <Route path='/school-website/kontakt' element={<Kontakt></Kontakt>}></Route>
+        <Route path='/school-website/kontakt' element={<Kontakt users={users}></Kontakt>}></Route>
         <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
         <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
         <Route path="school-website/bilder" element={<Fotos></Fotos>}></Route>
@@ -72,6 +83,8 @@ function App() {
         <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
         <Route path="/school-website/speisesaal" element={<Speisesaal></Speisesaal>}></Route>
         <Route path="/school-website/login" element={<Login logIn={logIn}></Login>}></Route>
+        <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn} auth={auth}></BeitragErstellen>}></Route>
+        <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn} auth={auth}></TerminErstellen>}></Route>
       </Routes>
     </React.Fragment>
   );

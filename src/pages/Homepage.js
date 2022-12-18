@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useState} from 'react'
 
 import TopBar from '../components/TopBar'
 import InfoCard from '../components/InfoCard'
@@ -22,7 +22,7 @@ export default function Homepage(props) {
   let gap = 4;
   let navigate = useNavigate();
   const isSmall = useMediaQuery("(min-width:1000px)")
-  console.log(props.posts);
+  const [showAmmount, setShowAmmount] = useState(1)
   return (
     <Stack>
       <img src={Castle} id="masked-text"></img>
@@ -30,7 +30,7 @@ export default function Homepage(props) {
         <Stack spacing={5}>
           <Stack spacing={5} direction={isSmall ? "row" : "column"}>
             <Typography></Typography>
-            <InfoCard description={["Stundenplan", "VWA", "Matura", "Tremine"]} title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
+            <InfoCard description={["Stundenplan", "VWA", "Matura", "Termine"]} title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
             <InfoCard description={["Termine", "Elternsprechtag", "Kontakt"]} title="Info Eltern"  url="/school-website/info/eltern"></InfoCard>
             <InfoCard description={["Lehrer", "Mitarbeiter", "Bilder", "Veranstaltungen", "Internat", "Anmelden", "Speisesaal"]} title="Info Schule"  url="/school-website/info/schule"></InfoCard> 
             <Card elevation={3}>
@@ -39,18 +39,17 @@ export default function Homepage(props) {
               </CardContent>
             </Card>  
           </Stack>
-          <Stack direction={"row"} spacing={120}>
             <Stack>
               <Typography variant='h3'>Beiträge</Typography>
-              <List>
-                {props.posts.map((element)=>{return (
-                  <ListItem>
-                  <Post title={element.title} date={element.created} content={element.content}></Post>
-                  </ListItem>
+              <Stack sx={{width:"100%"}} spacing={4}>
+                {props.posts.slice(0, 5*showAmmount).map((element)=>{return (
+                  <Paper>
+                    <Post sx={{width:"100%", overflow:'scroll'}} title={element.title} date={element.created} content={element.content}></Post>
+                  </Paper>
                   )
                 })}
-              </List>
-            </Stack>
+                <Button onClick={()=>{setShowAmmount(showAmmount+1);console.log(showAmmount)}} variant="text">Mehr zeigen</Button>
+              </Stack>
           </Stack>
         </Stack>
       </Container>
