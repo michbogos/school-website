@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 
-import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import { deDE } from '@mui/x-date-pickers/locales'
 
 
 const theme = createTheme({
@@ -29,8 +30,8 @@ const theme = createTheme({
     body2:{
       fontSize: '16px'
     }
-  }
-  
+  },
+  deDE,
 });
 
 
