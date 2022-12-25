@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import {Card, Typography, Box, Stack} from "@mui/material";
+import {Card, Typography, Stack, CardContent, CardMedia, CardActions, Button} from "@mui/material";
 
 export default function CalendarCard(props) {
+
+  const [short, setShort] = useState(true)
+
   return (
-    <Card sx={{maxHeight:"30vh"}}>
-        <Stack direction="row" spacing={4} justifyContent="space-between">
-            <Stack sx={{padding:"1em"}}>
-                <Typography variant="h4">{props.title}</Typography>
-                <Typography sx={{whiteSpace:"pre-line"}} variant="body1">{props.description}</Typography>
-            </Stack>
-            <Box sx={{backgroundColor:"primary.main", padding:"1rem"}}>
-                <Typography variant='h3' sx={{backgroundColor:"primary.main", color:"primary.contrastText", width:"30%"}}>{props.date}</Typography>
-            </Box>
+    <Card>
+      <CardMedia>
+        <Typography variant='h3' sx={{backgroundColor:"primary.main", color:"primary.contrastText"}}>{props.date}</Typography>
+      </CardMedia>
+      <CardContent>
+        <Stack>
+          <Typography sx={{overflowWrap:"break-word"}} variant="h4">{props.title}</Typography>
+          <Typography sx={{whiteSpace:"pre-line", overflowWrap:"break-word"}} variant="body1">{short ? props.description.substring(0, 150) : props.description}</Typography>
         </Stack>
+      </CardContent>
+      <CardActions>
+        {
+          (props.title.length + props.description.length) > 150 &&
+           <Button variant='text' onClick = {()=>{setShort(!short)}}>{short ? "Mehr Zeigen" : "Weniger Zeigen"}</Button>
+        }
+      </CardActions>
     </Card>
   )
 }

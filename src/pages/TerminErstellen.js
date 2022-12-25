@@ -1,4 +1,3 @@
-import { TabPanelUnstyled } from '@mui/base'
 import { Stack, Box} from '@mui/system'
 import {React, useEffect, useState} from 'react'
 
@@ -6,7 +5,7 @@ import { redirect } from 'react-router-dom'
 import { marked } from "marked"
 import Login from './Login'
 import DOMPurify from 'dompurify';
-import { Button, TextField } from '@mui/material'
+import { Button, TextField, Grid } from '@mui/material'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/de';
@@ -44,7 +43,7 @@ export default function BeitragErstellen(props){
     return (
       <Stack>
         <Button variant="text" onClick={()=>{createTermin()}}>Posten</Button>
-        <Stack direction="row" width={"90vw"} spacing={4}>
+        <Stack direction="row" spacing={4}>
           <Stack height="100vh" spacing={4}>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
               <DatePicker
@@ -57,9 +56,13 @@ export default function BeitragErstellen(props){
               />
             </LocalizationProvider>
             <TextField label="Titel" onChange={(e)=>{setTitle(e.target.value)}}></TextField>
-              <Box onInput={(e)=>{setDescription(e.target.innerText)}} sx={{overflow:"scroll", padding:"1vh",height:"90vh", width:"50vw"}} contentEditable></Box>
+              <Box onInput={(e)=>{setDescription(e.target.innerText)}} sx={{overflow:"scroll", padding:"1vh", width:"50vw"}} contentEditable></Box>
           </Stack>
-          <CalendarCard title={title} description={description} date={format([time.year().toString(), time.month().toString(), time.date().toString()].join("-"))}></CalendarCard>
+          <Grid container spacing={4} overflow="scroll" minHeight="20vh" maxHeight="90vh">
+            <Grid item xs={8}>
+              <CalendarCard title={title} description={description} date={format([time.year().toString(), time.month().toString(), time.date().toString()].join("-"))}></CalendarCard>
+            </Grid>
+          </Grid>
         </Stack>
       </Stack>
     )

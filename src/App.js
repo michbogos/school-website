@@ -56,7 +56,7 @@ function App() {
     pb.collection('users').authWithPassword(
       email,
       password,
-  ).then((res)=>{setAuth(res); navigate("/school-website")});
+  ).then((res)=>{setAuth(res); navigate("/school-website")}).catch((e)=>{console.log(e); setAuth(false)});
   }
 
   let logOut=(email, password)=>{
@@ -82,7 +82,7 @@ function App() {
         <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
         <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
         <Route path="/school-website/speisesaal" element={<Speisesaal></Speisesaal>}></Route>
-        <Route path="/school-website/login" element={<Login logIn={logIn}></Login>}></Route>
+        <Route path="/school-website/login" element={<Login auth={auth} logIn={logIn}></Login>}></Route>
         <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn} auth={auth}></BeitragErstellen>}></Route>
         <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn} auth={auth}></TerminErstellen>}></Route>
       </Routes>

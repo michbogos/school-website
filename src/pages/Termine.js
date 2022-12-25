@@ -1,6 +1,7 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Button, Container, Grid, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
 import React from 'react'
+import { useState } from 'react'
 import CalendarCard from '../components/CalendarCard'
 import TopBar from '../components/TopBar'
 
@@ -10,19 +11,26 @@ let format = (date)=>{
 }
 
 export default function Termine(props) {
+  const [count, setCount] = useState(1)
+
   return (
     <React.Fragment>
     <TopBar></TopBar>
     <center>
     <Stack width="90vw">
       <Typography variant='h1'>Kalender</Typography>
-      <Grid container spacing={4} overflow="scroll" minHeight="20vh" maxHeight="90vh">
-        {props.termine.map((e)=>{
+      <Grid container spacing={4} minHeight="20vh">
+        {props.termine.slice(0, count*6).map((e)=>{
           return <Grid item xs={4}><CalendarCard title={e.title} description={e.content} date={format(e.date)}></CalendarCard></Grid>
         })}
       </Grid>
     </Stack>
+    {props.termine.length > count*6 &&
+      <Button variant='text' onClick = {()=>{setCount(count + 1)}}>Mehr Zeigen</Button>
+    }
     </center>
     </React.Fragment>
   )
 }
+
+
