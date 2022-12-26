@@ -19,10 +19,10 @@ export default function Kontakt(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>
-                      <Typography>Name</Typography>
+                      <Typography variant='body2'>Name</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography>E-Mail-Adresse</Typography>
+                      <Typography variant="body2">E-Mail-Adresse</Typography>
                     </TableCell>
                   </TableRow>
                 </TableHead>

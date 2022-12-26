@@ -15,7 +15,6 @@ export default function Termine(props) {
 
   return (
     <React.Fragment>
-    <TopBar></TopBar>
     <center>
     <Stack width="90vw">
       <Typography variant='h1'>Kalender</Typography>

@@ -24,6 +24,7 @@ import { WebUntisAnonymousAuth, WebUntisElementType } from 'webuntis';
 import TopBar from './components/TopBar';
 import BeitragErstellen from './pages/BeitragErstellen';
 import TerminErstellen from './pages/TerminErstellen';
+import FotoHochladen from './pages/FotoHochladen';
 import { FormControlUnstyledContext } from '@mui/base';
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
         <Route path="/school-website/login" element={<Login auth={auth} logIn={logIn}></Login>}></Route>
         <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn} auth={auth}></BeitragErstellen>}></Route>
         <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn} auth={auth}></TerminErstellen>}></Route>
+        <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} logIn={logIn} auth={auth}/>}></Route>
       </Routes>
     </React.Fragment>
   );
