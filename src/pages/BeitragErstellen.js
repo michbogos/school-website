@@ -15,12 +15,12 @@ export default function BeitragErstellen(props){
   }
 
   useEffect(()=>{
-    if(!props.auth){
+    if(!props.pb.authStore.isValid){
       redirect("school-website/login")
     }
   }, [])
   const [markdown, setMarkdown] = useState("")
-  if(props.auth){
+  if(props.pb.authStore.isValid){
     return (
       <Stack>
         <Button variant="text" onClick={()=>{createPost(document.getElementById("preview").innerHTML)}}>Posten</Button>

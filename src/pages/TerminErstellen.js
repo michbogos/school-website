@@ -39,7 +39,7 @@ export default function BeitragErstellen(props){
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
 
-  if(props.auth){
+  if(props.pb.authStore.isValid){
     return (
       <Stack>
         <Button variant="text" onClick={()=>{createTermin()}}>Posten</Button>

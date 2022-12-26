@@ -4,7 +4,7 @@ import React from 'react'
 import Login from './Login'
 
 export default function FotoHochladen(props) {
-    if(props.auth){
+    if(props.pb.authStore.isValid){
         return (
             <Container maxWidth="xl">
                 <Box sx={{width:"100%"}}>
