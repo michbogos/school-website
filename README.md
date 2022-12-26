@@ -14,6 +14,8 @@ Todo:
 - Improve content
 - Add Photo page
 - Finish modular components
+- Imporve Pocketbase security rules
+- Make code less ugly
 
 Future goals:
 - Integrate with PocketBase

@@ -39,6 +39,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [termine, setTermine] = useState([]);
   const [auth, setAuth] = useState(null);
+  const [images, setImages] = useState([]);
 
   let navigate = useNavigate();
 
@@ -50,6 +51,7 @@ function App() {
     })
     pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
     pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
+    pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
   }, [])
 
   let logIn=(email, password)=>{
@@ -77,7 +79,7 @@ function App() {
         <Route path='/school-website/kontakt' element={<Kontakt users={users}></Kontakt>}></Route>
         <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
         <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
-        <Route path="school-website/bilder" element={<Fotos></Fotos>}></Route>
+        <Route path="school-website/bilder" element={<Fotos images={images}></Fotos>}></Route>
         <Route path='/school-website/veranstaltungen' element={<Veranstaltungen></Veranstaltungen>}></Route>
         <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
         <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
