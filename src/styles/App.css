@@ -5,6 +5,8 @@ body{
   padding-top:10vh;
   width:100vw;
   transition-duration: 300ms;
+  --offset: 187;
+  --duration: 1.4s;
 }
 
 p,h1,h2,h3,h4{
@@ -17,4 +19,5 @@ p,h1,h2,h3,h4{
   mask-repeat: no-repeat;
   height:90vh;
   margin-bottom: 10vh;
+  background-color: black;
 }

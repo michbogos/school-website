@@ -28,16 +28,40 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="root">
+      <center>
+        <div class="lds-dual-ring"></div>
+      </center>
+    </div>
   </body>
+  <style>
+        .lds-dual-ring {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-dual-ring:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid #222222;
+      border-color: #222222 transparent #222222 transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+      animation-direction: alternate;
+    }
+    @keyframes lds-dual-ring {
+      0% {
+        transform: rotate(0deg);
+        border-color: #222222 transparent #dddddd transparent;
+      }
+      100% {
+        transform: rotate(360deg);
+        border-color: #dddddd transparent #222222 transparent;;
+      }
+    }
+
+  </style>
 </html>

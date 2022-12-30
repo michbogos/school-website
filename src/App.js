@@ -20,12 +20,10 @@ import Anmelden from './pages/Anmelden';
 import Speisesaal from './pages/Speisesaal';
 import Login from "./pages/Login"
 
-import { WebUntisAnonymousAuth, WebUntisElementType } from 'webuntis';
 import TopBar from './components/TopBar';
 import BeitragErstellen from './pages/BeitragErstellen';
 import TerminErstellen from './pages/TerminErstellen';
 import FotoHochladen from './pages/FotoHochladen';
-import { FormControlUnstyledContext } from '@mui/base';
 
 function App() {
   const pb = new PocketBase('http://127.0.0.1:8090');
@@ -46,14 +44,29 @@ function App() {
 
   useEffect(()=>{
     pb.collection("users").authRefresh().then((res)=>{setAuth(res)})
-    pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
-    pb.collection('posts').subscribe('*', (e)=>{
-      setPosts([...posts, e])
-    })
-    pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
-    pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
-    pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
-  }, [])
+      pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
+      pb.collection('posts').subscribe('*', (e)=>{
+        setPosts([...posts, e])
+      })
+      pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
+      pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
+      pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+    // if(window.Worker){
+    //   const worker = new WorkerBuilder(loaderWorker)
+    //   worker.onmessage = (e)=>{console.log(e.data)}
+    //   worker.postMessage(pb.collection);
+    // }
+    // else{
+    //   pb.collection("users").authRefresh().then((res)=>{setAuth(res)})
+    //   pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
+    //   pb.collection('posts').subscribe('*', (e)=>{
+    //     setPosts([...posts, e])
+    //   })
+    //   pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
+    //   pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
+    //   pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+    // }
+  })
 
   let logIn=(email, password)=>{
     pb.collection('users').authWithPassword(
