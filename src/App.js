@@ -34,7 +34,7 @@ function App() {
   //  console.log(res)
   //})
 
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(false);
   const [users, setUsers] = useState([]);
   const [termine, setTermine] = useState([]);
   const [auth, setAuth] = useState(null);
@@ -44,13 +44,10 @@ function App() {
 
   useEffect(()=>{
     pb.collection("users").authRefresh().then((res)=>{setAuth(res)})
-      pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
-      pb.collection('posts').subscribe('*', (e)=>{
-        setPosts([...posts, e])
-      })
-      pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
-      pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
-      pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+    pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
+    pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
+    pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
+    pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
     // if(window.Worker){
     //   const worker = new WorkerBuilder(loaderWorker)
     //   worker.onmessage = (e)=>{console.log(e.data)}

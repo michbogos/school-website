@@ -42,7 +42,10 @@ export default function Homepage(props) {
             <Stack>
               <Typography variant='h3'>Beiträge</Typography>
               <Stack sx={{width:"100%"}} spacing={4}>
-                {props.posts.slice(0, 5*showAmmount).map((element)=>{return (
+                {
+                  !props.posts ? <>loading...</> :
+                
+                props.posts.slice(0, 5*showAmmount).map((element)=>{return (
                   <Paper>
                     <Post sx={{width:"100%", overflow:'scroll'}} title={element.title} date={element.created} content={element.content}></Post>
                   </Paper>
