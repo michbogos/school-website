@@ -35,10 +35,10 @@ function App() {
   //})
 
   const [posts, setPosts] = useState(false);
-  const [users, setUsers] = useState([]);
-  const [termine, setTermine] = useState([]);
+  const [users, setUsers] = useState(false);
+  const [termine, setTermine] = useState(false);
   const [auth, setAuth] = useState(null);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(false);
 
   let navigate = useNavigate();
 

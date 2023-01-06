@@ -4,7 +4,7 @@ import TopBar from '../components/TopBar'
 import InfoCard from '../components/InfoCard'
 
 import Stack from "@mui/material/Stack"
-import {Grid, List, ListItem, Typography, Link, CardContent} from "@mui/material"
+import {Grid, List, ListItem, Typography, Link, CardContent, Skeleton} from "@mui/material"
 import { Button, Toolbar, IconButton, Paper, Card} from '@mui/material'
 import { Container } from '@mui/system'
 
@@ -43,7 +43,9 @@ export default function Homepage(props) {
               <Typography variant='h3'>Beiträge</Typography>
               <Stack sx={{width:"100%"}} spacing={4}>
                 {
-                  !props.posts ? <>loading...</> :
+                  !props.posts ? <><Skeleton variant='rectangular'></Skeleton>
+                  <Skeleton variant='rectangular'></Skeleton>
+                  <Skeleton variant='rectangular'></Skeleton></> :
                 
                 props.posts.slice(0, 5*showAmmount).map((element)=>{return (
                   <Paper>

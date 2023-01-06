@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Typography } from '@mui/material'
+import { Button, Container, Grid, Skeleton, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
 import React from 'react'
 import { useState } from 'react'
@@ -19,7 +19,19 @@ export default function Termine(props) {
     <Stack width="90vw">
       <Typography variant='h1'>Kalender</Typography>
       <Grid container spacing={4} minHeight="20vh">
-        {props.termine.slice(0, count*6).map((e)=>{
+        {!props.termine ? <><Grid item xs={4}>
+            <Skeleton></Skeleton>
+            </Grid>
+            <Grid item xs={4}>
+            <Skeleton></Skeleton>
+          </Grid>
+          <Grid item xs={4}>
+          <Skeleton></Skeleton>
+        </Grid>
+        <Grid item xs={4}>
+        <Skeleton></Skeleton>
+      </Grid></> :
+        props.termine.slice(0, count*6).map((e)=>{
           return <Grid item xs={4}><CalendarCard title={e.title} description={e.content} date={format(e.date)}></CalendarCard></Grid>
         })}
       </Grid>
