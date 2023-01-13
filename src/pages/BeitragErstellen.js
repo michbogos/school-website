@@ -11,7 +11,7 @@ import { Button } from '@mui/material'
 export default function BeitragErstellen(props){
 
   let createPost = (content)=>{
-    props.pb.collection("posts").create({"title":"Title", "content":content, "creator":props.auth.record.username})
+    props.pb.collection("posts").create({"title":"Title", "content":content, "creator":"props.auth.record.username"})
   }
 
   useEffect(()=>{

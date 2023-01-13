@@ -43,7 +43,7 @@ export default function Homepage(props) {
               <Typography variant='h3'>Beiträge</Typography>
               <Stack sx={{width:"100%"}} spacing={4}>
                 {
-                  !props.posts ? <><Skeleton variant='rectangular'></Skeleton>
+                  props.posts === false ? <><Skeleton variant='rectangular'></Skeleton>
                   <Skeleton variant='rectangular'></Skeleton>
                   <Skeleton variant='rectangular'></Skeleton></> :
                 

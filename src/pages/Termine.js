@@ -32,7 +32,7 @@ export default function Termine(props) {
         <Skeleton></Skeleton>
       </Grid></> :
         props.termine.slice(0, count*6).map((e)=>{
-          return <Grid item xs={4}><CalendarCard title={e.title} description={e.content} date={format(e.date)}></CalendarCard></Grid>
+          return <Grid item xs={4}><CalendarCard title={e.title} description={e.content} date={e.date}></CalendarCard></Grid>
         })}
       </Grid>
     </Stack>

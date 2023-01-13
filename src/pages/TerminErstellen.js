@@ -5,7 +5,7 @@ import { redirect } from 'react-router-dom'
 import { marked } from "marked"
 import Login from './Login'
 import DOMPurify from 'dompurify';
-import { Button, TextField, Grid } from '@mui/material'
+import { Button, TextField, Grid, Paper } from '@mui/material'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/de';
@@ -22,12 +22,15 @@ export default function BeitragErstellen(props){
   }
 
   let format = (date)=>{
-    let months = ["Jan", "Feb", "März", "Apr", "Mai", "Jun", "Jul", "Aug", "Sept", "Okt", "Nov", "Dez"]
-    return  date.split(" ")[0].split("-")[2] + " " + months[parseInt(date.split(" ")[0].split("-")[1]-1)]
+    if(date){
+      let months = ["Jan", "Feb", "März", "Apr", "Mai", "Jun", "Jul", "Aug", "Sept", "Okt", "Nov", "Dez"]
+      return  date.split("-")[2] + " " + months[parseInt(date.split(" ")[0].split("-")[1])]
+    }
+    return ""
   }
 
   let createTermin = ()=>{
-    props.pb.collection("termine").create({"title":title, "content":description, "date":time})
+    props.pb.collection("termine").create({"title":title, "content":description, "date":format([time.year().toString(), time.month().toString(), time.date().toString()].join("-"))})
   }
 
   useEffect(()=>{
@@ -56,11 +59,11 @@ export default function BeitragErstellen(props){
               />
             </LocalizationProvider>
             <TextField label="Titel" onChange={(e)=>{setTitle(e.target.value)}}></TextField>
-              <Box onInput={(e)=>{setDescription(e.target.innerText)}} sx={{overflow:"scroll", padding:"1vh", width:"50vw"}} contentEditable></Box>
+              <Paper variant='outlined'><Box onInput={(e)=>{setDescription(e.target.innerText)}} sx={{overflow:"scroll", padding:"1vh", width:"50vw"}} contentEditable></Box></Paper>
           </Stack>
           <Grid container spacing={4} overflow="scroll" minHeight="20vh" maxHeight="90vh">
             <Grid item xs={8}>
-              <CalendarCard title={title} description={description} date={format([time.year().toString(), time.month().toString(), time.date().toString()].join("-"))}></CalendarCard>
+              <CalendarCard title={title} description={description} date={time ? format([time.year().toString(), time.month().toString(), time.date().toString()].join("-")) : ""}></CalendarCard>
             </Grid>
           </Grid>
         </Stack>

@@ -18,15 +18,17 @@ export default function TopBar(props) {
       <Box sx={{flexGrow:1}}>
         <IconButton onClick = {()=>{navigate("/school-website")}}><img style = {{width:"5vh"}} src={Logo}></img></IconButton>
         <HoverButton uid = "1" url = "/school-website/schule" label="Schule" sublables={["Info", "Mehr Erfahren", "Internat"]}></HoverButton>
-        <HoverButton uid = "2" label="Wir" sublables={["Klassen", "Kolegen", "Mitarbeiter"]}></HoverButton>
-        <HoverButton uid = "3" label="Veranstaltungen" sublables={["Sportwoache", "Schwimmwoche", "Wienwoche"]}></HoverButton>
+        <HoverButton uid = "2" url = "/school-website/wir"label="Wir" sublables={["Klassen", "Kolegen", "Mitarbeiter"]}></HoverButton>
+        <HoverButton uid = "3" url = "/school-website/veranstaltungen" label="Veranstaltungen" sublables={["Sportwoache", "Schwimmwoche", "Wienwoche"]}></HoverButton>
         <HoverButton uid = "4" label="Bilder" url="/school-website/bilder" sublables={["Über", "Vario Portal"]}></HoverButton>
-        <HoverButton uid = "5" label="Info" sublables={["Kotakt", "Administration"]}></HoverButton>
       </Box>
       <Box>
         {
           props.auth ? <LoggedInFragment logOut={props.logOut} auth={props.auth}></LoggedInFragment> :
-        <Button variant="text" onClick={()=>{navigate("/school-website/login")}}>Login</Button>
+        <>
+          <Button variant="text" onClick={()=>{navigate("/school-website/login")}}>Login</Button>
+          <Button vatiant="text" onClick={()=>{navigate("/school-website/signup")}}>Konto Erstellen</Button>
+        </>
         }
       </Box>
     </Toolbar>

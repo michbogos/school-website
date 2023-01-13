@@ -24,6 +24,7 @@ import TopBar from './components/TopBar';
 import BeitragErstellen from './pages/BeitragErstellen';
 import TerminErstellen from './pages/TerminErstellen';
 import FotoHochladen from './pages/FotoHochladen';
+import SignUp from './pages/SignUp';
 
 function App() {
   const pb = new PocketBase('http://127.0.0.1:8090');
@@ -39,6 +40,7 @@ function App() {
   const [termine, setTermine] = useState(false);
   const [auth, setAuth] = useState(null);
   const [images, setImages] = useState(false);
+  //const [pageIds, setPageIds] = useState
 
   let navigate = useNavigate();
 
@@ -63,13 +65,25 @@ function App() {
     //   pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
     //   pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
     // }
-  })
+  }, [])
 
   let logIn=(email, password)=>{
     pb.collection('users').authWithPassword(
       email,
       password,
   ).then((res)=>{setAuth(res);return 0}).catch((e)=>{console.log(e.name);setAuth(false);return -1});
+  }
+
+  let signUp=(username, email, password, passwordConfirm, name, surname)=>{
+    pb.collection('users').create({"username":username,
+                                   "email":email, 
+                                   "password":password, 
+                                   "passwordConfirm":passwordConfirm,
+                                   "name": [name, surname].join(" ")}).then((res)=>{
+                                    logIn(email, password);
+    }).catch((err)=>{
+      setAuth(false);
+    })
   }
 
   let logOut=(email, password)=>{
@@ -99,6 +113,7 @@ function App() {
         <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn}></BeitragErstellen>}></Route>
         <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn}></TerminErstellen>}></Route>
         <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} logIn={logIn}/>}></Route>
+        <Route path="/school-website/signup" element={<SignUp signUp={signUp}></SignUp>}></Route>
       </Routes>
     </React.Fragment>
   );
