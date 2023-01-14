@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, Suspense, useEffect, useState} from 'react'
 
 import TopBar from '../components/TopBar'
 import InfoCard from '../components/InfoCard'
@@ -19,13 +19,17 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function Homepage(props) {
 
+  useEffect(()=>{
+    props.getPosts()
+  }, [])
+
   let gap = 4;
   let navigate = useNavigate();
   const isSmall = useMediaQuery("(min-width:1000px)")
   const [showAmmount, setShowAmmount] = useState(1)
   return (
     <Stack>
-      <img src={Castle} id="masked-text"></img>
+      <Suspense fallback ={<Typography variant='h1'>Schloss Traunsee</Typography>}><img sx={isSmall ? {height:"90vh", marginBottom:"10vh"} : {height:"10vh", marginBottom:"0"}} src={Castle} id="masked-text"></img></Suspense>
       <Container maxWidth="xl">
         <Stack spacing={5}>
           <Stack spacing={5} direction={isSmall ? "row" : "column"}>

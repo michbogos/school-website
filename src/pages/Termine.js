@@ -1,6 +1,6 @@
 import { Button, Container, Grid, Skeleton, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import CalendarCard from '../components/CalendarCard'
 import TopBar from '../components/TopBar'
@@ -12,6 +12,10 @@ let format = (date)=>{
 
 export default function Termine(props) {
   const [count, setCount] = useState(1)
+  
+  useEffect(()=>{
+    props.getTermine()
+  }, [])
 
   return (
     <React.Fragment>

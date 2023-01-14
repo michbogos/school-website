@@ -5,14 +5,12 @@ import Schule from './pages/Schule';
 import Veranstaltungen from './pages/Veranstaltungen';
 
 import PocketBase from 'pocketbase';
-import React, { useEffect, useState } from 'react';
-import Fotos from './pages/Fotos';
+import React, { Suspense, useEffect, useState } from 'react';
+
 import Stundenplan from './pages/Stundenplan';
 import VWA from './pages/VWA';
 import Matura from './pages/Matura';
-import Termine from './pages/Termine';
 import Elternsprechtag from './pages/Elternsprechtag';
-import Kontakt from './pages/Kontakt';
 import Lehrer from './pages/Lehrer';
 import Mitarbeiter from './pages/Mitarbeiter';
 import Internat from './pages/Internat';
@@ -25,9 +23,15 @@ import BeitragErstellen from './pages/BeitragErstellen';
 import TerminErstellen from './pages/TerminErstellen';
 import FotoHochladen from './pages/FotoHochladen';
 import SignUp from './pages/SignUp';
+import Loading from './components/Loading';
+
 
 function App() {
   const pb = new PocketBase('http://127.0.0.1:8090');
+
+  const Fotos = React.lazy(() => import('./pages/Fotos'));
+  const Termine = React.lazy(()=> import('./pages/Termine'));
+  const Kontakt = React.lazy(()=> import('./pages/Kontakt'));
   //const untis = new WebUntisAnonymousAuth('brg-borg-traunsee', 'mese.webuntis.com');
   //untis.login().then(res=>console.log(res));
 
@@ -36,20 +40,35 @@ function App() {
   //})
 
   const [posts, setPosts] = useState(false);
-  const [users, setUsers] = useState(false);
-  const [termine, setTermine] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [termine, setTermine] = useState([]);
   const [auth, setAuth] = useState(null);
-  const [images, setImages] = useState(false);
+  const [images, setImages] = useState([]);
   //const [pageIds, setPageIds] = useState
 
-  let navigate = useNavigate();
+  let getUsers = ()=>{
+    pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{console.log(res);setUsers(res)});
+  }
+
+  let getPosts = ()=>{
+    pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
+  }
+
+  let getTermine = ()=>{
+    pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
+  }
+
+  let getImages = ()=>{
+    pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+  }
 
   useEffect(()=>{
     pb.collection("users").authRefresh().then((res)=>{setAuth(res)})
-    pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
-    pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
-    pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
-    pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+    //pb.collection('posts').getList(1, 50).then((res)=>{setPosts(res.items)});
+    //pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{setUsers(res)});
+    //pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
+    //pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+
     // if(window.Worker){
     //   const worker = new WorkerBuilder(loaderWorker)
     //   worker.onmessage = (e)=>{console.log(e.data)}
@@ -95,16 +114,16 @@ function App() {
     <React.Fragment>
       <TopBar logOut={logOut} auth={auth}></TopBar>
       <Routes>
-        <Route path='/school-website' element={<Homepage posts={posts}/>}></Route>
+        <Route path='/school-website' element={<Homepage getPosts={getPosts} posts={posts}/>}></Route>
         <Route path='/school-website/stundenplan' element={<Stundenplan></Stundenplan>}></Route>
         <Route path='/school-website/vwa' element={<VWA></VWA>}></Route>
         <Route path='/school-website/matura' element={<Matura></Matura>}></Route>
-        <Route path="/school-website/termine" element={<Termine termine={termine}></Termine>}></Route>
+        <Route path="/school-website/termine" element={<Suspense fallback={<Loading></Loading>}><Termine getTermine={getTermine} termine={termine}></Termine></Suspense>}></Route>
         <Route path='/school-website/elternsprechtag' element={<Elternsprechtag></Elternsprechtag>}></Route>
-        <Route path='/school-website/kontakt' element={<Kontakt users={users}></Kontakt>}></Route>
+        <Route path='/school-website/kontakt' element={<Suspense fallback={<Loading></Loading>}><Kontakt getUsers={getUsers} users={users}></Kontakt></Suspense>}></Route>
         <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
         <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
-        <Route path="school-website/bilder" element={<Fotos images={images}></Fotos>}></Route>
+        <Route path="school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Fotos images = {images} getImages={getImages}></Fotos></Suspense>}></Route>
         <Route path='/school-website/veranstaltungen' element={<Veranstaltungen></Veranstaltungen>}></Route>
         <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
         <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>

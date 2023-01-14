@@ -14,7 +14,7 @@ export default function LoggedInFragment(props) {
         <></>
         }
         <Button variant='text' onClick={props.logOut}>Log out</Button>
-        <Avatar>{props.auth.record.username}</Avatar>
+        <Avatar>{props.auth.record.username[0]}</Avatar>
     </Stack>
   )
 }

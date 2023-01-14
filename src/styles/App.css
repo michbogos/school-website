@@ -17,7 +17,5 @@ p,h1,h2,h3,h4{
   mask: url("../assets/mask.svg");
   mask-size: contain;
   mask-repeat: no-repeat;
-  height:90vh;
-  margin-bottom: 10vh;
   background-color: black;
 }

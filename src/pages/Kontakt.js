@@ -1,6 +1,6 @@
 import { TextField, Paper, Typography, Table, TableBody, TableContainer, TableCell, TableHead, TableRow} from '@mui/material'
 import { Container, Stack } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import TopBar from '../components/TopBar'
 
@@ -8,6 +8,9 @@ import TopBar from '../components/TopBar'
 
 export default function Kontakt(props) {
   const [searchQuery, setSearchQuery] = useState("")
+  useEffect(()=>{
+    props.getUsers()
+  }, [])
   return (
     <Container maxWidth="lg">
     <TopBar></TopBar>

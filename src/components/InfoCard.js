@@ -12,7 +12,7 @@ export default function InfoCard(props) {
   const isSmall = useMediaQuery("(min-width:1000px)")
 
   return (
-    <Card elevation={3} sx={{height:"50vh"}}>
+    <Card elevation={3}>
         <CardContent sx={{height:"45vh"}}>
           <Stack spacing={5} direction={isSmall ? "row" : "column"} justifyContent="space-between" sx={{height:"100%"}}>
             <Box>

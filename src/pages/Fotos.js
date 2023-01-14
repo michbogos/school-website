@@ -4,6 +4,10 @@ import React, { useEffect, useState } from 'react'
 
 export default function Fotos(props) {
 
+  useEffect(()=>{
+    props.getImages();
+  }, []);
+
   return (
     <Container maxWidth="xl">
       <Typography textAlign={"center"} variant='h1'>Bilder</Typography>
