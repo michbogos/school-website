@@ -24,6 +24,7 @@ import TerminErstellen from './pages/TerminErstellen';
 import FotoHochladen from './pages/FotoHochladen';
 import SignUp from './pages/SignUp';
 import Loading from './components/Loading';
+import NotFound from './pages/NotFound';
 
 
 function App() {
@@ -133,6 +134,7 @@ function App() {
         <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn}></TerminErstellen>}></Route>
         <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} logIn={logIn}/>}></Route>
         <Route path="/school-website/signup" element={<SignUp signUp={signUp}></SignUp>}></Route>
+        <Route path="/school-website/*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </React.Fragment>
   );

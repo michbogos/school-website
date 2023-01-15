@@ -1,15 +1,13 @@
 import {React, Suspense, useEffect, useState} from 'react'
 
-import TopBar from '../components/TopBar'
 import InfoCard from '../components/InfoCard'
 
 import Stack from "@mui/material/Stack"
-import {Grid, List, ListItem, Typography, Link, CardContent, Skeleton} from "@mui/material"
-import { Button, Toolbar, IconButton, Paper, Card} from '@mui/material'
+import {Typography, CardContent, Skeleton} from "@mui/material"
+import { Button, Paper, Card} from '@mui/material'
 import { Container } from '@mui/system'
 
 import Castle from "../assets/castle.jpg"
-import { useNavigate } from 'react-router-dom'
 import Post from '../components/Post'
 import Links from '../components/Links'
 
@@ -24,12 +22,11 @@ export default function Homepage(props) {
   }, [])
 
   let gap = 4;
-  let navigate = useNavigate();
   const isSmall = useMediaQuery("(min-width:1000px)")
   const [showAmmount, setShowAmmount] = useState(1)
   return (
-    <Stack>
-      <Suspense fallback ={<Typography variant='h1'>Schloss Traunsee</Typography>}><img sx={isSmall ? {height:"90vh", marginBottom:"10vh"} : {height:"10vh", marginBottom:"0"}} src={Castle} id="masked-text"></img></Suspense>
+    <Stack gap={4}>
+    <img src={Castle} id="masked-text"></img>
       <Container maxWidth="xl">
         <Stack spacing={5}>
           <Stack spacing={5} direction={isSmall ? "row" : "column"}>

@@ -9,13 +9,10 @@ body{
   --duration: 1.4s;
 }
 
-p,h1,h2,h3,h4{
-  font-family: 'Roboto', sans-serif; 
-}
-
 #masked-text{
   mask: url("../assets/mask.svg");
   mask-size: contain;
   mask-repeat: no-repeat;
   background-color: black;
+  height:50rem;
 }
