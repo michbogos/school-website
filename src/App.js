@@ -26,8 +26,74 @@ import SignUp from './pages/SignUp';
 import Loading from './components/Loading';
 import NotFound from './pages/NotFound';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { deDE } from '@mui/x-date-pickers/locales'
+import { CssBaseline } from '@mui/material';
+
+import { deepPurple, grey } from '@mui/material/colors';
+
+const getDesignTokens = (mode) => ({
+  palette: {
+    mode,
+    ...(mode === 'light'
+      ? {
+          primary: deepPurple,
+          divider: deepPurple[200],
+          text: {
+            primary: grey[900],
+            secondary: grey[800],
+          },
+          secondary: {
+            main: grey[900],
+            textContrast: grey[50],
+          },
+          appBar:{
+            main:"#ffffff",
+            contrastText:grey[900],
+          },
+        }
+      : {
+          primary:{
+            main:grey[50],
+            contrastText:[50],
+          },
+          appBar:{
+            main:grey[900],
+            contrastText:grey[50],
+          },
+          divider: grey,
+          background: {
+            default: grey[900],
+            paper: grey[900],
+          },
+          text: {
+            primary: '#fff',
+            secondary: grey[50],
+          },
+        }),
+  },
+});
+
+
 
 function App() {
+
+  const [mode, setMode] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      // The dark mode switch would invoke this method
+      toggleColorMode: () => {
+        setMode((prevMode) =>
+          prevMode === 'light' ? 'dark' : 'light',
+        );
+      },
+    }),
+    [],
+  );
+
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   const pb = new PocketBase('http://127.0.0.1:8090');
 
   const Fotos = React.lazy(() => import('./pages/Fotos'));
@@ -112,31 +178,33 @@ function App() {
   }
 
   return (
-    <React.Fragment>
-      <TopBar logOut={logOut} auth={auth}></TopBar>
-      <Routes>
-        <Route path='/school-website' element={<Homepage getPosts={getPosts} posts={posts}/>}></Route>
-        <Route path='/school-website/stundenplan' element={<Stundenplan></Stundenplan>}></Route>
-        <Route path='/school-website/vwa' element={<VWA></VWA>}></Route>
-        <Route path='/school-website/matura' element={<Matura></Matura>}></Route>
-        <Route path="/school-website/termine" element={<Suspense fallback={<Loading></Loading>}><Termine getTermine={getTermine} termine={termine}></Termine></Suspense>}></Route>
-        <Route path='/school-website/elternsprechtag' element={<Elternsprechtag></Elternsprechtag>}></Route>
-        <Route path='/school-website/kontakt' element={<Suspense fallback={<Loading></Loading>}><Kontakt getUsers={getUsers} users={users}></Kontakt></Suspense>}></Route>
-        <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
-        <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
-        <Route path="school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Fotos images = {images} getImages={getImages}></Fotos></Suspense>}></Route>
-        <Route path='/school-website/veranstaltungen' element={<Veranstaltungen></Veranstaltungen>}></Route>
-        <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
-        <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
-        <Route path="/school-website/speisesaal" element={<Speisesaal></Speisesaal>}></Route>
-        <Route path="/school-website/login" element={<Login error={auth === false} logIn={logIn}></Login>}></Route>
-        <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn}></BeitragErstellen>}></Route>
-        <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn}></TerminErstellen>}></Route>
-        <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} logIn={logIn}/>}></Route>
-        <Route path="/school-website/signup" element={<SignUp signUp={signUp}></SignUp>}></Route>
-        <Route path="/school-website/*" element={<NotFound></NotFound>}></Route>
-      </Routes>
-    </React.Fragment>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <TopBar mode={mode} toggleMode={colorMode.toggleColorMode} logOut={logOut} auth={auth}></TopBar>
+        <Routes>
+          <Route path='/school-website' element={<Homepage getPosts={getPosts} posts={posts}/>}></Route>
+          <Route path='/school-website/stundenplan' element={<Stundenplan></Stundenplan>}></Route>
+          <Route path='/school-website/vwa' element={<VWA></VWA>}></Route>
+          <Route path='/school-website/matura' element={<Matura></Matura>}></Route>
+          <Route path="/school-website/termine" element={<Suspense fallback={<Loading></Loading>}><Termine getTermine={getTermine} termine={termine}></Termine></Suspense>}></Route>
+          <Route path='/school-website/elternsprechtag' element={<Elternsprechtag></Elternsprechtag>}></Route>
+          <Route path='/school-website/kontakt' element={<Suspense fallback={<Loading></Loading>}><Kontakt getUsers={getUsers} users={users}></Kontakt></Suspense>}></Route>
+          <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
+          <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
+          <Route path="school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Fotos images = {images} getImages={getImages}></Fotos></Suspense>}></Route>
+          <Route path='/school-website/veranstaltungen' element={<Veranstaltungen></Veranstaltungen>}></Route>
+          <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
+          <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
+          <Route path="/school-website/speisesaal" element={<Speisesaal></Speisesaal>}></Route>
+          <Route path="/school-website/login" element={<Login error={auth === false} logIn={logIn}></Login>}></Route>
+          <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn}></BeitragErstellen>}></Route>
+          <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn}></TerminErstellen>}></Route>
+          <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} logIn={logIn}/>}></Route>
+          <Route path="/school-website/signup" element={<SignUp signUp={signUp}></SignUp>}></Route>
+          <Route path="/school-website/*" element={<NotFound></NotFound>}></Route>
+        </Routes>
+      </CssBaseline>
+    </ThemeProvider>
   );
 }
 export default App;
