@@ -16,3 +16,11 @@ body{
   background-color: black;
   height:50rem;
 }
+
+#masked-text-small{
+  mask: url("../assets/mask.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: black;
+  height:17rem;
+}

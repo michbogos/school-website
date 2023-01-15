@@ -3,7 +3,7 @@ import {React, Suspense, useEffect, useState} from 'react'
 import InfoCard from '../components/InfoCard'
 
 import Stack from "@mui/material/Stack"
-import {Typography, CardContent, Skeleton} from "@mui/material"
+import {Typography, CardContent, Skeleton, Grid} from "@mui/material"
 import { Button, Paper, Card} from '@mui/material'
 import { Container } from '@mui/system'
 
@@ -26,11 +26,11 @@ export default function Homepage(props) {
   const [showAmmount, setShowAmmount] = useState(1)
   return (
     <Stack gap={4}>
-    <img src={Castle} id="masked-text"></img>
+    {isSmall ? <img src={Castle} id="masked-text"></img> : <img src={Castle} id="masked-text-small"></img>}
       <Container maxWidth="xl">
         <Stack spacing={5}>
-          <Stack spacing={5} direction={isSmall ? "row" : "column"}>
-            <Typography></Typography>
+          {isSmall ?
+          <Stack spacing={5} alignItems={isSmall ? "unset" : "center"} direction={isSmall ? "row" : "column"}>
             <InfoCard description={["Stundenplan", "VWA", "Matura", "Termine"]} title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
             <InfoCard description={["Termine", "Elternsprechtag", "Kontakt"]} title="Info Eltern"  url="/school-website/info/eltern"></InfoCard>
             <InfoCard description={["Lehrer", "Mitarbeiter", "Bilder", "Veranstaltungen", "Internat", "Anmelden", "Speisesaal"]} title="Info Schule"  url="/school-website/info/schule"></InfoCard> 
@@ -39,7 +39,26 @@ export default function Homepage(props) {
                 <Links></Links>
               </CardContent>
             </Card>  
-          </Stack>
+          </Stack> :
+          <Grid container gap={4} width="100%">
+            <Grid item xs={12}>
+              <InfoCard description={["Stundenplan", "VWA", "Matura", "Termine"]} title="Info Schüler" url="/school-website/info/schueler"></InfoCard>
+            </Grid>
+            <Grid item>
+              <InfoCard description={["Termine", "Elternsprechtag", "Kontakt"]} title="Info Eltern"  url="/school-website/info/eltern"></InfoCard>
+            </Grid>
+            <Grid item>
+              <InfoCard description={["Lehrer", "Mitarbeiter", "Bilder", "Veranstaltungen", "Internat", "Anmelden", "Speisesaal"]} title="Info Schule"  url="/school-website/info/schule"></InfoCard> 
+            </Grid>
+            <Grid item xs={12}>
+              <Card elevation={3}>
+                <CardContent>
+                  <Links></Links>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+          }
             <Stack>
               <Typography variant='h3'>Beiträge</Typography>
               <Stack sx={{width:"100%"}} spacing={4}>
