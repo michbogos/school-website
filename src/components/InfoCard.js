@@ -17,7 +17,7 @@ export default function InfoCard(props) {
               <Typography variant='h3'>{props.title}</Typography>
               <List>
                 {props.description.map((e)=>{return <ListItem alignItems='center'>
-                                                      <center><Button onClick={()=>{navigate("/school-website/".concat(e.toLowerCase()))}}><Typography variant='body2' color="primary">{e}</Typography></Button></center>
+                                                      <center><Button component={Link} to={"/school-website/".concat(e.toLowerCase())}><Typography variant='body2' color="primary">{e}</Typography></Button></center>
                   </ListItem>})}
               </List>
             </Box>

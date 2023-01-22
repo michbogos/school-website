@@ -56,19 +56,23 @@ const getDesignTokens = (mode) => ({
       : {
           primary:{
             main:grey[50],
-            contrastText:[50],
+            contrastText:grey[900],
+          },
+          secondary:{
+            main:grey[50],
+            contrastText:grey[50],
           },
           appBar:{
-            main:grey[900],
-            contrastText:grey[50],
+            main:grey[50],
           },
           divider: grey,
           background: {
             default: grey[900],
             paper: grey[900],
+            contrastText: grey[50],
           },
           text: {
-            primary: '#fff',
+            primary: grey[50],
             secondary: grey[50],
           },
         }),

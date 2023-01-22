@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import CalendarCard from '../components/CalendarCard'
 import TopBar from '../components/TopBar'
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 let format = (date)=>{
   let months = ["Jan", "Feb", "März", "Apr", "Mai", "Jun", "Jul", "Aug", "Sept", "Okt", "Nov", "Dez"]
@@ -12,7 +13,7 @@ let format = (date)=>{
 
 export default function Termine(props) {
   const [count, setCount] = useState(1)
-  
+  const isSmall = useMediaQuery("(min-width:1000px)")
   useEffect(()=>{
     props.getTermine()
   }, [])
@@ -36,7 +37,7 @@ export default function Termine(props) {
         <Skeleton></Skeleton>
       </Grid></> :
         props.termine.slice(0, count*6).map((e)=>{
-          return <Grid item xs={4}><CalendarCard title={e.title} description={e.content} date={e.date}></CalendarCard></Grid>
+          return <Grid item xs={isSmall ? 4 : 10}><CalendarCard title={e.title} description={e.content} date={e.date}></CalendarCard></Grid>
         })}
       </Grid>
     </Stack>
