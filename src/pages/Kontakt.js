@@ -13,12 +13,11 @@ export default function Kontakt(props) {
   }, [])
   return (
     <Container maxWidth="lg">
-    <TopBar></TopBar>
     <Stack height="100%" width="100%">
         <TextField onChange={(e)=>{setSearchQuery(e.target.value)}} label="Wen suchen Sie?" fullWidth></TextField>
         <Stack height="70vh" overflow={"scroll"}>
             <TableContainer component={Paper}>
-              <Table sx={{minWidth:"50vw"}}>
+              <Table stickyHeader sx={{minWidth:"50vw"}}>
                 <TableHead>
                   <TableRow>
                     <TableCell>
@@ -30,7 +29,7 @@ export default function Kontakt(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.users.map((e)=>{return e}).filter(option => option.name.includes(searchQuery)).map(element =>
+                    {props.users.map((e)=>{return e}).filter(option => option.name.toLowerCase().includes(searchQuery.toLowerCase())).map(element =>
                         <TableRow>
                           <TableCell>
                             <Typography variant='body1'>{element.name}</Typography>

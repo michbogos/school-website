@@ -38,7 +38,10 @@ const getDesignTokens = (mode) => ({
     mode,
     ...(mode === 'light'
       ? {
-          primary: deepPurple,
+          primary: {
+            main:deepPurple[400],
+            contrastText: grey[50],
+          },
           divider: deepPurple[200],
           text: {
             primary: grey[900],
@@ -65,7 +68,7 @@ const getDesignTokens = (mode) => ({
           appBar:{
             main:grey[50],
           },
-          divider: grey,
+          divider: grey[50],
           background: {
             default: grey[900],
             paper: grey[900],
@@ -118,7 +121,7 @@ function App() {
   //const [pageIds, setPageIds] = useState
 
   let getUsers = ()=>{
-    pb.collection('users').getFullList(200, {filter:"verified = true"}).then((res)=>{console.log(res);setUsers(res)});
+    pb.collection('teachers').getFullList(200).then((res)=>{console.log(res);setUsers(res)});
   }
 
   let getPosts = ()=>{
