@@ -18,6 +18,8 @@ Done:
 Todo:
 - Make code less ugly
 - Make design responsive
+- Add ability to add pages
+- Add search with lunr
 
 Future goals:
 - Web Untis Integration

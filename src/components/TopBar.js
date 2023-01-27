@@ -18,10 +18,10 @@ export default function TopBar(props) {
     <AppBar color="appBar">
       <Stack direction="row" sx={{width:"100vw", margin:"0"}} alignItems="baseline" justifyContent="stretch">
         <Box sx={{flex:1}}>
-          <IconButton onClick = {()=>{navigate("/school-website")}}><img style = {props.mode==="light" ? {width:"5vh"} : {width:"5vh", filter:"invert(1)"}} src={Logo}></img></IconButton>
+          <IconButton onClick = {()=>{navigate("/school-website")}}><img style = {props.mode==="light" ? {width:"5vh", filter:"invert(0)"} : {width:"5vh", filter:"invert(1)"}} src={Logo}></img></IconButton>
           <HoverButton uid = "1" url = "/school-website/schule" label="Schule" sublables={["Info", "Mehr Erfahren", "Internat"]}></HoverButton>
-          <HoverButton uid = "2" url = "/school-website/wir"label="Wir" sublables={["Klassen", "Kolegen", "Mitarbeiter"]}></HoverButton>
           <HoverButton uid = "3" url = "/school-website/veranstaltungen" label="Veranstaltungen" sublables={["Sportwoache", "Schwimmwoche", "Wienwoche"]}></HoverButton>
+          <HoverButton uid = "3" url = "/school-website/veranstaltungen" label="Shop" sublables={["Sportwoache", "Schwimmwoche", "Wienwoche"]}></HoverButton>
         </Box>
         <TextField fullWidth
             size='small'

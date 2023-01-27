@@ -1,7 +1,6 @@
 import './styles/App.css';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Homepage from './pages/Homepage';
-import Schule from './pages/Schule';
 import Veranstaltungen from './pages/Veranstaltungen';
 
 import PocketBase from 'pocketbase';
@@ -26,11 +25,10 @@ import SignUp from './pages/SignUp';
 import Loading from './components/Loading';
 import NotFound from './pages/NotFound';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { deDE } from '@mui/x-date-pickers/locales'
-import { CssBaseline } from '@mui/material';
+import Schule from './pages/Schule';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 import { deepPurple, grey } from '@mui/material/colors';
 
 const getDesignTokens = (mode) => ({
@@ -190,6 +188,7 @@ function App() {
         <TopBar mode={mode} toggleMode={colorMode.toggleColorMode} logOut={logOut} auth={auth}></TopBar>
         <Routes>
           <Route path='/school-website' element={<Homepage getPosts={getPosts} posts={posts}/>}></Route>
+          <Route path="/school-website/schule" element={<Schule></Schule>}></Route>
           <Route path='/school-website/stundenplan' element={<Stundenplan></Stundenplan>}></Route>
           <Route path='/school-website/vwa' element={<VWA></VWA>}></Route>
           <Route path='/school-website/matura' element={<Matura></Matura>}></Route>
