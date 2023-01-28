@@ -2,6 +2,7 @@ import { ImageList, Typography, ImageListItem, ImageListItemBar } from '@mui/mat
 import { Container } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import {useMediaQuery} from '@mui/material';
 
 export default function Fotos(props) {
 
@@ -11,9 +12,11 @@ export default function Fotos(props) {
     props.getImages(label["*"]);
   }, []);
 
+  const small = useMediaQuery('(min-width:1000px)')
+
   return (
     <Container maxWidth="xl">
-      <ImageList variant='masonry'>
+      <ImageList variant='quilted' cols={small ? 2 : 1}>
         {props.images.map((item)=>{
           return(
           <ImageListItem key={item.img}>

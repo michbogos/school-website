@@ -9,29 +9,6 @@ export default function FotoHochladen(props) {
         props.getImageGroups()
     }, [])
 
-    const [imageFile, setImageFile] = useState(null)
-
-    let dropHandler = (e)=>{
-        e.preventDefault()
-        if (e.dataTransfer.items) {
-            // Use DataTransferItemList interface to access the file(s)
-            [...e.dataTransfer.items].forEach((item, i) => {
-                // If dropped items aren't files, reject them
-                if (item.kind === 'file') {
-                const file = item.getAsFile();
-                setImageFile(file)
-                //console.log(`… file[${i}].name = ${file.name}`);
-                }
-            });
-            } else {
-            // Use DataTransfer interface to access the file(s)
-            [...e.dataTransfer.files].forEach((file, i) => {
-                setImageFile(file)
-                //console.log(`… file[${i}].name = ${file.name}`);
-            });
-        }
-    }
-
     let submit = ()=>{
         let data = new FormData();
         data.append("img", document.getElementById("file").files[0]);
@@ -44,7 +21,7 @@ export default function FotoHochladen(props) {
         return (
             <Container maxWidth="xl">
                 <Stack width="100%" height="100%" gap={4} justifyContent={"center"}>
-                <Paper ondrop={dropHandler} ondragover={(e)=>{e.preventDefault()}} variant='outlined' sx={{width:"100%", height:"20vh", padding:"1vh"}}>
+                <Paper variant='outlined' sx={{width:"100%", height:"20vh", padding:"1vh"}}>
                         <Input id="file" type='file'></Input>
                 </Paper>
                     <TextField id="description" label="Kurze Bildbeschreibung">Kurze Bildbeschreibung</TextField>

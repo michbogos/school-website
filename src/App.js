@@ -29,6 +29,7 @@ import NotFound from './pages/NotFound';
 import Schule from './pages/Schule';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {useMediaQuery} from '@mui/material';
 import { CssBaseline } from '@mui/material';
 import { deepPurple, grey } from '@mui/material/colors';
 
@@ -85,7 +86,15 @@ const getDesignTokens = (mode) => ({
 
 function App() {
 
-  const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState("light");
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  useEffect(()=>{
+    if(prefersDarkMode){
+      setMode("dark");
+    }
+  }, [])
+
   const colorMode = React.useMemo(
     () => ({
       // The dark mode switch would invoke this method
@@ -133,7 +142,13 @@ function App() {
   }
 
   let getImages = (label)=>{
-    pb.collection("images").getFullList(200, {sort:"-created", filter:`label="${label}"`}).then((res)=>{console.log(res);setImages(res.map((item)=>{return {"img": pb.getFileUrl(item, item.img, {'thumb': '500x0'}), "description":item.description}}));console.log(images)})
+    pb.collection("images").getFullList(200, {sort:"-created", filter:`label="${label}"`}).then((res)=>{console.log(res);setImages(res.map((item)=>{return {"img": pb.getFileUrl(item, item.img), "description":item.description}}));console.log(images)})
+  }
+
+  let getImage = (id, label)=>{
+    if(id === undefined){
+      pb.collection("images", )
+    }
   }
 
   let getImageGroups = ()=>{

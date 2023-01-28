@@ -14,17 +14,18 @@ Done:
 - Finish modular components
 - Imporve Pocketbase security rules
 - Integrate with PocketBase
+- Dark mode
+- Color Scheme
 
 Todo:
 - Make code less ugly
 - Make design responsive
 - Add ability to add pages
 - Add search with lunr
+- Add tooltips
 
 Future goals:
 - Web Untis Integration
-- Color Scheme
-- Dark mode
 - Full text search
 - Fix errors and warnings
 - Finish the website

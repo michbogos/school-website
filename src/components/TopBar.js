@@ -37,16 +37,16 @@ export default function TopBar(props) {
             inputProps={{ 'aria-label': 'Suchen...' }}></TextField>
         <Box sx={{flex:1}}>
           {
-            props.auth ? <LoggedInFragment logOut={props.logOut} auth={props.auth}></LoggedInFragment> :
+            props.auth ? <LoggedInFragment toggleMode={props.toggleMode} mode={props.mode} logOut={props.logOut} auth={props.auth}></LoggedInFragment> :
           <Stack direction={"row"} height="100%" alignItems={""} justifyContent="right">
               <Button variant="text" onClick={()=>{navigate("/school-website/login")}}>Login</Button>
               <Button vatiant="text" onClick={()=>{navigate("/school-website/signup")}}>Konto Erstellen</Button>
-              <IconButton onClick={props.toggleMode} color="primary">
+              <IconButton style={{ backgroundColor: 'transparent' }} onClick={props.toggleMode} color="primary">
                 {props.mode === "light" ?
                   <WbSunnyIcon/> :
                   <DarkModeIcon/>
               }
-              </IconButton>
+            </IconButton>
           </Stack>
           }
         </Box>
