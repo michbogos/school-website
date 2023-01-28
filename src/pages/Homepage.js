@@ -3,7 +3,7 @@ import {React, Suspense, useEffect, useState} from 'react'
 import InfoCard from '../components/InfoCard'
 
 import Stack from "@mui/material/Stack"
-import {Typography, CardContent, Skeleton, Grid} from "@mui/material"
+import {Typography, CardContent, Skeleton, Grid, Slide} from "@mui/material"
 import { Button, Paper, Card} from '@mui/material'
 import { Container } from '@mui/system'
 

@@ -16,6 +16,7 @@ import Internat from './pages/Internat';
 import Anmelden from './pages/Anmelden';
 import Speisesaal from './pages/Speisesaal';
 import Login from "./pages/Login"
+import Bilder from './pages/Bilder';
 
 import TopBar from './components/TopBar';
 import BeitragErstellen from './pages/BeitragErstellen';
@@ -116,6 +117,7 @@ function App() {
   const [termine, setTermine] = useState([]);
   const [auth, setAuth] = useState(null);
   const [images, setImages] = useState([]);
+  const [imageGroups, setImageGroups] = useState([]);
   //const [pageIds, setPageIds] = useState
 
   let getUsers = ()=>{
@@ -130,8 +132,12 @@ function App() {
     pb.collection('termine').getFullList(200).then((res)=>{setTermine(res)})
   }
 
-  let getImages = ()=>{
-    pb.collection("images").getFullList(200, {sort:"-created"}).then((res)=>{console.log(res);setImages(res.map((item)=>{return pb.getFileUrl(item, item.img, {'thumb': '500x0'})}));console.log(images)})
+  let getImages = (label)=>{
+    pb.collection("images").getFullList(200, {sort:"-created", filter:`label="${label}"`}).then((res)=>{console.log(res);setImages(res.map((item)=>{return {"img": pb.getFileUrl(item, item.img, {'thumb': '500x0'}), "description":item.description}}));console.log(images)})
+  }
+
+  let getImageGroups = ()=>{
+    pb.collection("images").getFullList(200).then((res)=>{setImageGroups(Array.from(new Set(res.map((item)=>{return item.label}))))})
   }
 
   useEffect(()=>{
@@ -182,6 +188,10 @@ function App() {
     setAuth(null);
   }
 
+  let uploadImage = (data)=>{
+    pb.collection("images").create(data);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
@@ -197,7 +207,7 @@ function App() {
           <Route path='/school-website/kontakt' element={<Suspense fallback={<Loading></Loading>}><Kontakt getUsers={getUsers} users={users}></Kontakt></Suspense>}></Route>
           <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
           <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
-          <Route path="school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Fotos images = {images} getImages={getImages}></Fotos></Suspense>}></Route>
+          <Route path="school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Bilder></Bilder></Suspense>}></Route>
           <Route path='/school-website/veranstaltungen' element={<Veranstaltungen></Veranstaltungen>}></Route>
           <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
           <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
@@ -205,8 +215,9 @@ function App() {
           <Route path="/school-website/login" element={<Login error={auth === false} logIn={logIn}></Login>}></Route>
           <Route path="/school-website/new" element={<BeitragErstellen pb={pb} logIn={logIn}></BeitragErstellen>}></Route>
           <Route path="/school-website/termin_erstellen" element={<TerminErstellen pb={pb} logIn={logIn}></TerminErstellen>}></Route>
-          <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} logIn={logIn}/>}></Route>
+          <Route path="/school-website/foto_hochladen" element={<FotoHochladen pb={pb} imageGroups={imageGroups} getImageGroups={getImageGroups} logIn={logIn} uploadImage={uploadImage}/>}></Route>
           <Route path="/school-website/signup" element={<SignUp signUp={signUp}></SignUp>}></Route>
+          <Route path="/school-website/bilder/*" element={<Suspense><Fotos images={images} getImages={getImages}></Fotos></Suspense>}></Route>
           <Route path="/school-website/*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </CssBaseline>
