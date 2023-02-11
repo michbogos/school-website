@@ -24,3 +24,8 @@ yarn-error.log*
 
 pb_data/
 pocketbase
+
+data.ms/
+dumps/
+
+meilisearch

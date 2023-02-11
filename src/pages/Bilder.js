@@ -13,7 +13,7 @@ function srcset(image, width, height, rows = 1, cols = 1) {
     };
   }
 
-export default function Bilder() {
+export default function Bilder(props) {
   return (
     <Container maxWidth="xl">
         <ImageList>

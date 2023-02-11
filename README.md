@@ -23,6 +23,8 @@ Todo:
 - Add ability to add pages
 - Add search with lunr
 - Add tooltips
+- Change useState to useMemo for better performance
+- Move to Router v6
 
 Future goals:
 - Web Untis Integration

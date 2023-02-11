@@ -1,5 +1,8 @@
 import './styles/App.css';
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Homepage from './pages/Homepage';
 import Veranstaltungen from './pages/Veranstaltungen';
 
@@ -32,6 +35,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {useMediaQuery} from '@mui/material';
 import { CssBaseline } from '@mui/material';
 import { deepPurple, grey } from '@mui/material/colors';
+import Profile from './pages/Profile';
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -114,6 +118,7 @@ function App() {
   const Fotos = React.lazy(() => import('./pages/Fotos'));
   const Termine = React.lazy(()=> import('./pages/Termine'));
   const Kontakt = React.lazy(()=> import('./pages/Kontakt'));
+  const SeiteErstellen = React.lazy(() => import("./pages/SeiteErstellen"))
   //const untis = new WebUntisAnonymousAuth('brg-borg-traunsee', 'mese.webuntis.com');
   //untis.login().then(res=>console.log(res));
 
@@ -145,10 +150,13 @@ function App() {
     pb.collection("images").getFullList(200, {sort:"-created", filter:`label="${label}"`}).then((res)=>{console.log(res);setImages(res.map((item)=>{return {"img": pb.getFileUrl(item, item.img), "description":item.description}}));console.log(images)})
   }
 
-  let getImage = (id, label)=>{
-    if(id === undefined){
-      pb.collection("images", )
-    }
+  let getImage = (label)=>{
+      pb.collection("images").getFirstListItem(`label="${label}"`).then(
+        (res)=>{
+          console.log("got image")
+          setImages([...images, {"img": pb.getFileUrl(res, res.img), "description":res.description}])
+        }
+      )
   }
 
   let getImageGroups = ()=>{
@@ -207,12 +215,120 @@ function App() {
     pb.collection("images").create(data);
   }
 
+  const router = createBrowserRouter([
+    {
+      path: "/school-website",
+      element: <TopBar mode={mode}  toggleMode={()=>{mode==="dark" ? setMode("light") : setMode("dark")}}></TopBar>,
+      children: [
+        {
+          path: "/school-website",
+          element: <Homepage getPosts={getPosts} posts={posts}/>,
+        },
+        {
+          path: "/school-website/profile",
+          element: <Profile pb={pb}></Profile>,
+        },
+        {
+          path: "/school-website/schule",
+          element: <Schule></Schule>,
+        },
+        {
+          path: '/school-website/stundenplan',
+          element: <Stundenplan></Stundenplan>,
+        },
+        {
+          path: '/school-website/vwa',
+          element: <VWA></VWA>,
+        },
+        {
+          path: '/school-website/matura',
+          element: <Matura></Matura>,
+        },
+        {
+          path: "/school-website/termine",
+          element: <Suspense fallback={<Loading></Loading>}><Termine getTermine={getTermine} termine={termine}></Termine></Suspense>,
+        },
+        {
+          path: '/school-website/elternsprechtag',
+          element: <Elternsprechtag></Elternsprechtag>,
+        },
+        {
+          path: '/school-website/kontakt',
+          element: <Suspense fallback={<Loading></Loading>}><Kontakt getUsers={getUsers} users={users}></Kontakt></Suspense>,
+        },
+        {
+          path: '/school-website/lehrer',
+          element: <Lehrer></Lehrer>,
+        },
+        {
+          path: '/school-website/mitarbeiter',
+          element: <Mitarbeiter></Mitarbeiter>,
+        },
+        {
+          path: "/school-website/bilder",
+          element: <Suspense fallback={<Loading></Loading>}><Bilder getImageGroups={getImageGroups} getImage={getImage} imageGroups={imageGroups} images={images}></Bilder></Suspense>,
+        },
+        {
+          path: '/school-website/veranstaltungen',
+          element: <Veranstaltungen></Veranstaltungen>,
+        },
+        {
+          path: '/school-website/internat',
+          element: <Internat></Internat>,
+        },
+        {
+          path: "/school-website",
+          element: <Homepage getPosts={getPosts} posts={posts}/>,
+        },
+        {
+          path: "/school-website/anmelden",
+          element: <Anmelden></Anmelden>,
+        },
+        {
+          path: "/school-website/speisesaal",
+          element: <Speisesaal></Speisesaal>,
+        },
+        {
+          path: "/school-website/login",
+          element: <Login error={auth === false} logIn={logIn}></Login>,
+        },
+        {
+          path: "/school-website/new",
+          element: <BeitragErstellen pb={pb} logIn={logIn}></BeitragErstellen>,
+        },
+        {
+          path: "/school-website/termin_erstellen",
+          element: <TerminErstellen pb={pb} logIn={logIn}></TerminErstellen>,
+        },
+        {
+          path: "/school-website/foto_hochladen",
+          element: <FotoHochladen pb={pb} imageGroups={imageGroups} getImageGroups={getImageGroups} logIn={logIn} uploadImage={uploadImage}/>,
+        },
+        {
+          path: "/school-website/signup",
+          element: <SignUp signUp={signUp}></SignUp>,
+        },
+        {
+          path: "/school-website/bilder/*",
+          element: <Suspense><Fotos images={images} getImages={getImages}></Fotos></Suspense>,
+        },
+        {
+          path: "/school-website/*",
+          element: <NotFound></NotFound>,
+        },
+      ]
+    },
+  ]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
+        <RouterProvider router={router} >
         <TopBar mode={mode} toggleMode={colorMode.toggleColorMode} logOut={logOut} auth={auth}></TopBar>
-        <Routes>
+        </RouterProvider>
+        {/* <Routes>
           <Route path='/school-website' element={<Homepage getPosts={getPosts} posts={posts}/>}></Route>
+          <Route path="/school-website/profile" element={<Profile pb={pb}></Profile>}></Route>
           <Route path="/school-website/schule" element={<Schule></Schule>}></Route>
           <Route path='/school-website/stundenplan' element={<Stundenplan></Stundenplan>}></Route>
           <Route path='/school-website/vwa' element={<VWA></VWA>}></Route>
@@ -222,7 +338,7 @@ function App() {
           <Route path='/school-website/kontakt' element={<Suspense fallback={<Loading></Loading>}><Kontakt getUsers={getUsers} users={users}></Kontakt></Suspense>}></Route>
           <Route path='/school-website/lehrer' element={<Lehrer></Lehrer>}></Route>
           <Route path='/school-website/mitarbeiter' element={<Mitarbeiter></Mitarbeiter>}></Route>
-          <Route path="school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Bilder></Bilder></Suspense>}></Route>
+          <Route path="/school-website/bilder" element={<Suspense fallback={<Loading></Loading>}><Bilder getImageGroups={getImageGroups} getImage={getImage} imageGroups={imageGroups} images={images}></Bilder></Suspense>}></Route>
           <Route path='/school-website/veranstaltungen' element={<Veranstaltungen></Veranstaltungen>}></Route>
           <Route path='/school-website/internat' element={<Internat></Internat>}></Route>
           <Route path='/school-website/anmelden' element={<Anmelden></Anmelden>}></Route>
@@ -234,7 +350,7 @@ function App() {
           <Route path="/school-website/signup" element={<SignUp signUp={signUp}></SignUp>}></Route>
           <Route path="/school-website/bilder/*" element={<Suspense><Fotos images={images} getImages={getImages}></Fotos></Suspense>}></Route>
           <Route path="/school-website/*" element={<NotFound></NotFound>}></Route>
-        </Routes>
+        </Routes> */}
       </CssBaseline>
     </ThemeProvider>
   );
