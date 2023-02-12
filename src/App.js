@@ -221,6 +221,10 @@ function App() {
       element: <TopBar mode={mode}  toggleMode={()=>{mode==="dark" ? setMode("light") : setMode("dark")}}></TopBar>,
       children: [
         {
+          path: "/school-website/seite_erstellen",
+          element: <Suspense><SeiteErstellen></SeiteErstellen></Suspense>
+        },
+        {
           path: "/school-website",
           element: <Homepage getPosts={getPosts} posts={posts}/>,
         },
@@ -315,7 +319,7 @@ function App() {
         {
           path: "/school-website/*",
           element: <NotFound></NotFound>,
-        },
+        }
       ]
     },
   ]);
